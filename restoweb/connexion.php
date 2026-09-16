@@ -11,10 +11,10 @@
 
     <p>Vous n'avez pas de compte ? <a href="inscription.php" title="Linktitle">S'inscrire</a></p>
 
-    <form>
+    <form action="produits.php" method="POST">
 
         <label>Adresse mail :</label></br>
-        <input name="Adresse mail" id="mail" type="text" value="" /></br></br>
+        <input name="email" id="mail" type="text" value="" /></br></br>
 
         <label>Mot de passe:</label></br>
         <input name="mdp" id="mdp" type="password" size="10" value="" /></br></br>

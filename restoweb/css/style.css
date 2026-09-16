@@ -1,0 +1,384 @@
+:root {
+  --primary: #d9381e;
+  --primary-hover: #b82b14;
+  --secondary: #2c3e50;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Annulation du violet par défaut sur tous les liens */
+a, a:visited, a:link {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout général */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 2rem auto;
+  flex: 1;
+}
+
+header {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 3px solid var(--primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+header img {
+  max-height: 70px;
+  margin-bottom: 0.5rem;
+}
+
+header h1 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+}
+
+header nav {
+  margin-top: 1rem;
+}
+
+header nav a, header nav a:visited, header nav a:link {
+  color: var(--secondary);
+  font-weight: 600;
+  margin: 0 0.5rem;
+}
+
+footer {
+  background-color: var(--secondary);
+  color: #ffffff;
+  text-align: center;
+  padding: 1.2rem;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+/* Formulaires & Cartes de connexion / inscription */
+.form-box {
+  background: var(--card-bg);
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-box.large {
+  max-width: 550px;
+}
+
+.form-box.text-center {
+  text-align: center;
+}
+
+.form-box h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--secondary);
+}
+
+.form-text-link {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+fieldset {
+  border: 1px solid var(--border-color);
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.2rem;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+  color: var(--primary);
+}
+
+/* Boutons */
+.btn-primary, .btn-secondary, button[type="submit"] {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.btn-primary, button[type="submit"] {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover, button[type="submit"]:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #1a252f;
+}
+
+.form-box .btn-primary,
+.form-box button[type="submit"] {
+  width: 100%;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Grille des produits */
+.grid-produits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.produit-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.produit-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.produit-content {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.produit-titre {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary);
+}
+
+.produit-desc {
+  font-size: 0.9rem;
+  color: #666666;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.produit-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.produit-prix {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+/* Sélecteur de quantité + / - */
+.quantite-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.btn-qty {
+  background: #f0f0f0;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: var(--secondary);
+}
+
+.btn-qty:hover {
+  background: #e0e0e0;
+}
+
+.quantite-selector input[type="number"] {
+  width: 40px;
+  height: 32px;
+  text-align: center;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: bold;
+  -moz-appearance: textfield;
+}
+
+.quantite-selector input::-webkit-outer-spin-button,
+.quantite-selector input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Correction contraste bouton principal */
+.btn-primary, 
+a.btn-primary, 
+button[type="submit"] {
+  background-color: var(--primary);
+  color: #ffffff !important; /* Force le texte blanc bien visible */
+  font-weight: 700;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.btn-primary:hover, 
+a.btn-primary:hover, 
+button[type="submit"]:hover {
+  background-color: var(--primary-hover);
+  color: #ffffff !important;
+}
+
+/* Section Mode de consommation */
+.mode-consommation {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.mode-options {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.mode-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.mode-option input[type="radio"] {
+  accent-color: var(--primary);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Titres de catégories dans la carte */
+.categorie-titre {
+  font-size: 1.4rem;
+  color: var(--secondary);
+  margin: 2.5rem 0 1rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+/* Bloc d'affichage de la TVA */
+.tva-info {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #eef2f7;
+  border-left: 4px solid var(--secondary);
+  font-size: 0.9rem;
+  color: var(--secondary);
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.tva-badge {
+  font-size: 0.75rem;
+  color: #666666;
+  display: block;
+  margin-top: 0.2rem;
+  font-weight: normal;
+}

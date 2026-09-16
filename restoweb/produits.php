@@ -3,269 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestoWeb - Carte & Commande</title>
-    <!-- Lien CSS selon l'arborescence du projet -->
+    <title>AVALTAPIZZA - Nos Produits</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="img/logo.png" alt="RestoWeb Logo" class="logo">
-            <h1>RestoWeb</h1>
-        </div>
+        <img src="img/logo.png" alt="Logo AVALTAPIZZA">
+        <h1>Nos Pizzas & Produits</h1>
         <nav>
-            <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="produits.php" class="active">Carte & Commande</a></li>
-                <li><a href="connexion.php">Connexion</a></li>
-                <li><a href="inscription.php">Inscription</a></li>
-                <li><a href="deconnexion.php">Déconnexion</a></li>
-            </ul>
+            <a href="index.php">Accueil</a>
+            <a href="produits.php">Carte & Produits</a>
+            <a href="connexion.php">Connexion</a>
+            <a href="inscription.php">Inscription</a>
+            <a href="deconnexion.php">Déconnexion</a>
         </nav>
     </header>
 
     <main class="container">
-        <h2>Notre Carte</h2>
-        <p>Sélectionnez votre mode de consommation et vos produits ci-dessous :</p>
 
-        
-        <form action="paiement.php" method="POST">
-
-            
-            <section class="type-commande">
-                <h3>1. Mode de consommation</h3>
-                <div class="options-radio">
-                    <label class="radio-card">
-                        <input type="radio" name="type_commande" value="sur_place" checked>
-                        <span><strong>Sur place</strong> (TVA 10%)</span>
-                    </label>
-                    <label class="radio-card">
-                        <input type="radio" name="type_commande" value="emporter">
-                        <span><strong>À emporter</strong> (TVA 5.5%)</span>
-                    </label>
-                </div>
-            </section>
-
-            
-            <section class="categorie-produits">
-                <h3>🍔 Menus Burgers & Frites</h3>
-                <div class="grid-produits">
-
-                    <article class="produit-card">
-                        <img src="img/produits/menu_burger_classique.jpg" alt="Menu Burger Classique" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Menu Burger Classique</h4>
-                            <p class="description">Burger bœuf, cheddar, salade, tomate + Frites maison</p>
-                            <p class="prix">11.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_1">Quantité :</label>
-                                <input type="number" id="qte_1" name="quantite[1]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/menu_burger_bacon.jpg" alt="Menu Cheese Bacon" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Menu Cheese & Bacon</h4>
-                            <p class="description">Double steak, bacon grillé, double cheddar + Frites maison</p>
-                            <p class="prix">13.00 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_2">Quantité :</label>
-                                <input type="number" id="qte_2" name="quantite[2]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/menu_burger_chicken.jpg" alt="Menu Chicken Burger" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Menu Chicken Crispy</h4>
-                            <p class="description">Poulet pané croustillant, sauce mayo-moutarde + Frites maison</p>
-                            <p class="prix">12.00 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_3">Quantité :</label>
-                                <input type="number" id="qte_3" name="quantite[3]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </section>
-
-           
-            <section class="categorie-produits">
-                <h3>🍕 Nos Pizzas</h3>
-                <div class="grid-produits">
-
-                    <article class="produit-card">
-                        <img src="img/produits/pizza_margherita.jpg" alt="Pizza Margherita" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Pizza Margherita</h4>
-                            <p class="description">Sauce tomate, mozzarella AOP, basilic frais</p>
-                            <p class="prix">9.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_4">Quantité :</label>
-                                <input type="number" id="qte_4" name="quantite[4]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/pizza_reine.jpg" alt="Pizza Reine" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Pizza Reine (Regina)</h4>
-                            <p class="description">Sauce tomate, mozzarella, jambon blanc, champignons</p>
-                            <p class="prix">11.00 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_5">Quantité :</label>
-                                <input type="number" id="qte_5" name="quantite[5]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/pizza_4fromages.jpg" alt="Pizza 4 Fromages" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Pizza 4 Fromages</h4>
-                            <p class="description">Mozzarella, gorgonzola, chèvre, emmental</p>
-                            <p class="prix">12.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_6">Quantité :</label>
-                                <input type="number" id="qte_6" name="quantite[6]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/pizza_pepperoni.jpg" alt="Pizza Pepperoni" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Pizza Pepperoni Spicy</h4>
-                            <p class="description">Sauce tomate, mozzarella, pepperoni piquant, origan</p>
-                            <p class="prix">12.00 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_7">Quantité :</label>
-                                <input type="number" id="qte_7" name="quantite[7]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/pizza_vegetarienne.jpg" alt="Pizza Végétarienne" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Pizza Végétarienne</h4>
-                            <p class="description">Sauce tomate, mozzarella, poivrons grillés, courgettes, olives</p>
-                            <p class="prix">11.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_8">Quantité :</label>
-                                <input type="number" id="qte_8" name="quantite[8]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </section>
-
-            
-            <section class="categorie-produits">
-                <h3>🥤 Boissons</h3>
-                <div class="grid-produits">
-
-                    <article class="produit-card">
-                        <img src="img/produits/coca_cola.jpg" alt="Coca-Cola 33cl" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Coca-Cola (33cl)</h4>
-                            <p class="prix">2.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_9">Quantité :</label>
-                                <input type="number" id="qte_9" name="quantite[9]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/coca_zero.jpg" alt="Coca-Cola Zero 33cl" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Coca-Cola Zero (33cl)</h4>
-                            <p class="prix">2.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_10">Quantité :</label>
-                                <input type="number" id="qte_10" name="quantite[10]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/ice_tea.jpg" alt="Ice Tea Pêche 33cl" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Ice Tea Pêche (33cl)</h4>
-                            <p class="prix">2.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_11">Quantité :</label>
-                                <input type="number" id="qte_11" name="quantite[11]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/eau_minerale.jpg" alt="Eau Minérale 50cl" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Eau Minérale (50cl)</h4>
-                            <p class="prix">1.80 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_12">Quantité :</label>
-                                <input type="number" id="qte_12" name="quantite[12]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </section>
-
-            
-            <section class="categorie-produits">
-                <h3>🍰 Desserts</h3>
-                <div class="grid-produits">
-
-                    <article class="produit-card">
-                        <img src="img/produits/tiramisu.jpg" alt="Tiramisu" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Tiramisu Fait Maison</h4>
-                            <p class="prix">4.00 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_13">Quantité :</label>
-                                <input type="number" id="qte_13" name="quantite[13]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="produit-card">
-                        <img src="img/produits/brownie.jpg" alt="Brownie Chocolat" class="produit-img">
-                        <div class="produit-info">
-                            <h4>Brownie Chocolat & Noix</h4>
-                            <p class="prix">3.50 € HT</p>
-                            <div class="quantite-selector">
-                                <label for="qte_14">Quantité :</label>
-                                <input type="number" id="qte_14" name="quantite[14]" min="0" max="20" value="0">
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </section>
-
-        
-            <div class="actions-commande">
-                <button type="submit" class="btn-primary">Valider la commande & Payer &rarr;</button>
+        <!-- Choix du mode de consommation -->
+        <section class="mode-consommation">
+            <h2>1. Mode de consommation</h2>
+            <div class="mode-options">
+                <label class="mode-option">
+                    <input type="radio" name="mode" value="sur_place" checked onchange="updateTvaInfo()">
+                    Sur place
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="mode" value="a_emporter" onchange="updateTvaInfo()">
+                    À emporter
+                </label>
             </div>
 
-        </form>
+            <div id="tva-box" class="tva-info">
+                <strong>TVA appliquée (Sur place) :</strong> 10 % sur la nourriture et boissons non alcoolisées, 20 % sur les boissons alcoolisées.
+            </div>
+        </section>
+
+        <!-- Sélection des produits -->
+        <section>
+            <h2>2. Notre Carte</h2>
+
+            <!-- CATEGORIE : MENUS -->
+            <h3 class="categorie-titre">Menus</h3>
+            <div class="grid-produits">
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Menu Solo" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Menu Solo</h3>
+                        <p class="produit-desc">1 Pizza au choix + 1 Boisson 33cl au choix.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">14.00 € TTC</span>
+                                <span class="tva-badge">TVA 10 % incluses</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[m1]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Menu Duo" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Menu Duo</h3>
+                        <p class="produit-desc">2 Pizzas au choix + 2 Boissons 33cl + 1 Tiramisu à partager.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">27.50 € TTC</span>
+                                <span class="tva-badge">TVA 10 % incluses</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[m2]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIE : PIZZAS -->
+            <h3 class="categorie-titre">Nos Pizzas Artisanales</h3>
+            <div class="grid-produits">
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Pizza Margherita" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Margherita</h3>
+                        <p class="produit-desc">Sauce tomate, mozzarella fior di latte, basilic frais, huile d'olive.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">9.50 € TTC</span>
+                                <span class="tva-badge">TVA 10 % incluses</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[p1]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Pizza Reine" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Reine</h3>
+                        <p class="produit-desc">Sauce tomate, mozzarella, jambon blanc, champignons frais.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">11.50 € TTC</span>
+                                <span class="tva-badge">TVA 10 % incluses</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[p2]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Pizza 4 Fromages" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">4 Fromages</h3>
+                        <p class="produit-desc">Sauce tomate, mozzarella, gorgonzola, chèvre, emmental.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">12.50 € TTC</span>
+                                <span class="tva-badge">TVA 10 % incluses</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[p3]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Pizza Orientale" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Orientale</h3>
+                        <p class="produit-desc">Sauce tomate, mozzarella, merguez artisanale, poivrons, œufs.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">12.00 € TTC</span>
+                                <span class="tva-badge">TVA 10 % incluses</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[p4]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIE : DESSERTS -->
+            <h3 class="categorie-titre">Desserts</h3>
+            <div class="grid-produits">
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Tiramisu Maison" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Tiramisu Maison</h3>
+                        <p class="produit-desc">Recette traditionnelle au café et mascarpone.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">4.50 € TTC</span>
+                                <span class="tva-badge">TVA 10 % (sur place) / 5.5 % (emporter)</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[d1]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Panna Cotta" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Panna Cotta</h3>
+                        <p class="produit-desc">Nappage coulis de fruits rouges ou caramel au beurre salé.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">4.00 € TTC</span>
+                                <span class="tva-badge">TVA 10 % (sur place) / 5.5 % (emporter)</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[d2]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIE : BOISSONS -->
+            <h3 class="categorie-titre">Boissons</h3>
+            <div class="grid-produits">
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Soda 33cl" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Soda 33cl</h3>
+                        <p class="produit-desc">Coca-Cola, Coca Zero, Ice Tea, Orangina.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">2.50 € TTC</span>
+                                <span class="tva-badge">TVA 10 % (sur place) / 5.5 % (emporter)</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[b1]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Eau Minérale 50cl" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Eau Minérale 50cl</h3>
+                        <p class="produit-desc">Eau plate ou gazeuse.</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">2.00 € TTC</span>
+                                <span class="tva-badge">TVA 10 % (sur place) / 5.5 % (emporter)</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[b2]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produit-card">
+                    <img src="images/pizza.jpg" alt="Bière Italienne 33cl" class="produit-img">
+                    <div class="produit-content">
+                        <h3 class="produit-titre">Bière Italienne 33cl</h3>
+                        <p class="produit-desc">Peroni ou Nastro Azzurro (Alcool).</p>
+                        <div class="produit-footer">
+                            <div>
+                                <span class="produit-prix">4.00 € TTC</span>
+                                <span class="tva-badge">TVA 20 % (Alcool)</span>
+                            </div>
+                            <div class="quantite-selector">
+                                <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
+                                <input type="number" name="quantite[b3]" value="0" min="0" max="20" readonly>
+                                <button type="button" class="btn-qty" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton validation -->
+            <div class="auth-buttons">
+                <a href="paiement.php" class="btn-primary">Passer la commande</a>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <p>&copy; 2024 RestoWeb - Tous droits réservés</p>
+        <p>&copy; 2026 AVALTAPIZZA - Tous droits réservés</p>
     </footer>
+
+    <script>
+    function changeQty(btn, delta) {
+        const container = btn.closest('.quantite-selector');
+        const input = container.querySelector('input[type="number"]');
+        let val = parseInt(input.value) || 0;
+        val = Math.max(0, Math.min(20, val + delta));
+        input.value = val;
+    }
+
+    function updateTvaInfo() {
+        const mode = document.querySelector('input[name="mode"]:checked').value;
+        const tvaBox = document.getElementById('tva-box');
+        
+        if (mode === 'sur_place') {
+            tvaBox.innerHTML = '<strong>TVA appliquée (Sur place) :</strong> 10 % sur les pizzas, plats préparés, desserts et sodas ; 20 % sur l\'alcool.';
+        } else {
+            tvaBox.innerHTML = '<strong>TVA appliquée (À emporter) :</strong> 10 % sur les pizzas chaudes et plats préparés ; 5,5 % sur les boissons sous emballage (sodas, eau) et desserts conditionnés ; 20 % sur l\'alcool.';
+        }
+    }
+    </script>
 
 </body>
 </html>

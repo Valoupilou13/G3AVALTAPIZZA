@@ -271,14 +271,65 @@ legend {
 /* ==========================================================================
    6. CARTE DES PRODUITS (produits.php)
    ========================================================================== */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+
+/* Mode de consommation & TVA */
+.mode-consommation {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 
-.product-card {
+.mode-options {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+
+.mode-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mode-option input[type="radio"] {
+  accent-color: var(--primary);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.tva-info {
+  padding: 0.75rem 1rem;
+  background-color: #eef2f7;
+  border-left: 4px solid var(--secondary);
+  font-size: 0.9rem;
+  color: var(--secondary);
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.categorie-titre {
+  font-size: 1.4rem;
+  color: var(--secondary);
+  margin: 2.5rem 0 1rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+/* Grille et cartes produits */
+.grid-produits, .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.produit-card, .product-card {
   background: var(--card-bg);
   border-radius: var(--radius);
   overflow: hidden;
@@ -288,47 +339,109 @@ legend {
   flex-direction: column;
 }
 
-.product-card img {
+.produit-img, .product-card img {
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
+  background-color: #e0e0e0;
 }
 
-.product-body {
+.produit-content, .product-body {
   padding: 1.2rem;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.product-title {
+.produit-titre, .product-title {
   font-size: 1.2rem;
   color: var(--secondary);
   margin-bottom: 0.4rem;
 }
 
-.product-desc {
+.produit-desc, .product-desc {
   font-size: 0.9rem;
   color: #666666;
   margin-bottom: 1rem;
   flex: 1;
+  line-height: 1.4;
 }
 
-.product-footer {
+.produit-footer, .product-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
   padding-top: 0.8rem;
   border-top: 1px solid var(--border-color);
+  gap: 0.5rem;
 }
 
-.product-price {
-  font-size: 1.25rem;
+.produit-prix, .product-price {
+  font-size: 1.15rem;
   font-weight: bold;
   color: var(--primary);
+  display: block;
 }
 
+.tva-badge {
+  font-size: 0.75rem;
+  color: #666666;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* Sélecteur de quantité (+ / -) */
+.quantite-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.btn-qty {
+  background: #f0f0f0;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.btn-qty:hover {
+  background: #e0e0e0;
+}
+
+.quantite-selector input[type="number"] {
+  width: 38px;
+  height: 32px;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: var(--secondary);
+  background: transparent;
+  -moz-appearance: textfield;
+}
+
+.quantite-selector input::-webkit-outer-spin-button,
+.quantite-selector input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Boutons d'action bas de page */
+.auth-buttons {
+  margin-top: 2rem;
+  text-align: right;
+}
 /* ==========================================================================
    7. PAGE PAIEMENT & RECAPITULATIF (paiement.php)
    ========================================================================== */

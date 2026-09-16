@@ -29,10 +29,10 @@
         <h2>Notre Carte</h2>
         <p>Sélectionnez votre mode de consommation et vos produits ci-dessous :</p>
 
-        <!-- Formulaire de commande envoyé vers paiement.php -->
+        
         <form action="paiement.php" method="POST">
 
-            <!-- 1. Choix du type de commande -->
+            
             <section class="type-commande">
                 <h3>1. Mode de consommation</h3>
                 <div class="options-radio">
@@ -47,7 +47,7 @@
                 </div>
             </section>
 
-            <!-- 2. Catégorie : Menus Burgers & Frites -->
+            
             <section class="categorie-produits">
                 <h3>🍔 Menus Burgers & Frites</h3>
                 <div class="grid-produits">
@@ -94,7 +94,7 @@
                 </div>
             </section>
 
-            <!-- 3. Catégorie : Nos Pizzas -->
+           
             <section class="categorie-produits">
                 <h3>🍕 Nos Pizzas</h3>
                 <div class="grid-produits">
@@ -167,7 +167,7 @@
                 </div>
             </section>
 
-            <!-- 4. Catégorie : Boissons -->
+            
             <section class="categorie-produits">
                 <h3>🥤 Boissons</h3>
                 <div class="grid-produits">
@@ -223,7 +223,7 @@
                 </div>
             </section>
 
-            <!-- 5. Catégorie : Desserts -->
+            
             <section class="categorie-produits">
                 <h3>🍰 Desserts</h3>
                 <div class="grid-produits">
@@ -255,7 +255,7 @@
                 </div>
             </section>
 
-            <!-- Bouton de validation de la commande -->
+        
             <div class="actions-commande">
                 <button type="submit" class="btn-primary">Valider la commande & Payer &rarr;</button>
             </div>

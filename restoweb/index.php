@@ -33,7 +33,7 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="connexion.html">Se connecter</a>
+                        <a href="connexion.php">Se connecter</a>
                     </li>
                     <li>
                         <a href="inscription.php">S'inscrire</a>

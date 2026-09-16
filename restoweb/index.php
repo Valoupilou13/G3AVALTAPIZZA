@@ -22,23 +22,37 @@
     </header>
 
     <main class="container">
-        <section>
+
+        <section class="hero-banner">
             <h2>À propos de notre pizzeria</h2>
             <p>
-                Chez <strong>AVALTAPIZZA</strong>, nous préparons nos pizzas avec des ingrédients frais et sélectionnés. 
-                Consultez notre carte, faites votre choix en quelques clics et indiquez si vous souhaitez manger sur place ou emporter votre commande.
+                Chez <strong>AVALTAPIZZA</strong>, nous préparons nos pizzas avec des ingrédients frais et sélectionnés avec soin. 
+                Consultez notre carte, faites votre choix en quelques clics et choisissez de manger sur place ou à emporter.
             </p>
-        </section>
-
-        <section>
-            <h2>Rejoignez-nous pour commander</h2>
-            <p>Pour passer votre commande, veuillez vous identifier ou créer un compte client :</p>
-            <div class="auth-buttons">
+            <div class="hero-actions">
                 <a href="connexion.php" class="btn-primary">Se connecter</a>
                 <a href="inscription.php" class="btn-secondary">S'inscrire</a>
                 <a href="produits.php" class="btn-primary">Voir la carte</a>
             </div>
         </section>
+
+        <section>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Pâte Artisanale</h3>
+                    <p>Pétrie chaque jour sur place et maturée au minimum 24h pour une pâte croustillante et digeste.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Produits Frais</h3>
+                    <p>Ingrédients soigneusement sélectionnés : légumes locaux, charcuteries et fromages italiens AOP.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Sur Place ou À Emporter</h3>
+                    <p>Commandez en ligne et choisissez votre mode de dégustation en un instant.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>

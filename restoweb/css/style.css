@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. VARIABLES ET REINITIALISATION
+   ========================================================================== */
 :root {
   --primary: #d9381e;
   --primary-hover: #b82b14;
@@ -24,17 +27,11 @@ body {
   min-height: 100vh;
 }
 
-/* Annulation du violet par défaut sur tous les liens */
 a, a:visited, a:link {
   color: var(--primary);
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* Layout général */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -42,6 +39,9 @@ a:hover {
   flex: 1;
 }
 
+/* ==========================================================================
+   2. EN-TÊTE ET PIED DE PAGE
+   ========================================================================== */
 header {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -51,7 +51,7 @@ header {
 }
 
 header img {
-  max-height: 70px;
+  max-height: 90px;
   margin-bottom: 0.5rem;
 }
 
@@ -61,14 +61,29 @@ header h1 {
   margin-bottom: 0.2rem;
 }
 
+header p {
+  color: #666666;
+  font-size: 0.95rem;
+}
+
 header nav {
-  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
 }
 
 header nav a, header nav a:visited, header nav a:link {
   color: var(--secondary);
   font-weight: 600;
-  margin: 0 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+}
+
+header nav a:hover {
+  background-color: #f0f0f0;
+  color: var(--primary);
 }
 
 footer {
@@ -80,60 +95,168 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Formulaires & Cartes de connexion / inscription */
+/* ==========================================================================
+   3. BOUTONS
+   ========================================================================== */
+.btn-primary, a.btn-primary, button.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff !important;
+  font-weight: 700;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.btn-primary:hover, a.btn-primary:hover, button.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary, a.btn-secondary, button.btn-secondary {
+  background-color: var(--secondary);
+  color: #ffffff !important;
+  font-weight: 700;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.btn-secondary:hover, a.btn-secondary:hover, button.btn-secondary:hover {
+  background-color: #1a252f;
+}
+
+/* ==========================================================================
+   4. ACCUEIL (HERO & FEATURES)
+   ========================================================================== */
+.hero-banner {
+  background: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero-banner h2 {
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 0.8rem;
+}
+
+.hero-banner p {
+  font-size: 1.1rem;
+  color: #555555;
+  max-width: 650px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--card-bg);
+  padding: 1.8rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-top: 4px solid var(--primary);
+  text-align: center;
+}
+
+.feature-card h3 {
+  color: var(--secondary);
+  margin-bottom: 0.6rem;
+}
+
+.feature-card p {
+  color: #666666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   5. FORMULAIRES (Connexion / Inscription)
+   ========================================================================== */
 .form-box {
   background: var(--card-bg);
-  max-width: 480px;
-  margin: 2rem auto;
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  margin: 2rem auto;
+  border: 1px solid var(--border-color);
 }
 
 .form-box.large {
-  max-width: 550px;
-}
-
-.form-box.text-center {
-  text-align: center;
+  max-width: 700px;
 }
 
 .form-box h2 {
-  margin-bottom: 1.5rem;
-  text-align: center;
   color: var(--secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.5rem;
 }
 
-.form-text-link {
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 0.9rem;
+fieldset {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+legend {
+  font-weight: 600;
+  color: var(--primary);
+  padding: 0 0.5rem;
 }
 
 .form-group {
   margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.4rem;
   font-weight: 600;
+  margin-bottom: 0.4rem;
   font-size: 0.9rem;
+  color: var(--secondary);
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
-  width: 100%;
+.form-group input, 
+.form-group select, 
+.form-group textarea {
   padding: 0.75rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
+  width: 100%;
 }
 
-.form-group input:focus {
+.form-group input:focus, 
+.form-group select:focus {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(217, 56, 30, 0.15);
 }
 
 .form-row {
@@ -145,323 +268,75 @@ footer {
   flex: 1;
 }
 
-fieldset {
-  border: 1px solid var(--border-color);
-  padding: 1.2rem;
-  border-radius: var(--radius);
-  margin-bottom: 1.2rem;
-}
-
-legend {
-  font-weight: bold;
-  padding: 0 0.5rem;
-  color: var(--primary);
-}
-
-/* Boutons */
-.btn-primary, .btn-secondary, button[type="submit"] {
-  display: inline-block;
-  padding: 0.75rem 1.25rem;
-  text-decoration: none;
-  border-radius: 4px;
-  text-align: center;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  font-size: 1rem;
-  transition: background 0.2s ease;
-}
-
-.btn-primary, button[type="submit"] {
-  background-color: var(--primary);
-  color: #ffffff;
-}
-
-.btn-primary:hover, button[type="submit"]:hover {
-  background-color: var(--primary-hover);
-}
-
-.btn-secondary {
-  background-color: var(--secondary);
-  color: #ffffff;
-}
-
-.btn-secondary:hover {
-  background-color: #1a252f;
-}
-
-.form-box .btn-primary,
-.form-box button[type="submit"] {
-  width: 100%;
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-/* Grille des produits */
-.grid-produits {
+/* ==========================================================================
+   6. CARTE DES PRODUITS (produits.php)
+   ========================================================================== */
+.product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
 
-.produit-card {
+.product-card {
   background: var(--card-bg);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
 }
 
-.produit-img {
+.product-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
 
-.produit-content {
-  padding: 1rem;
-  flex: 1;
+.product-body {
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
-.produit-titre {
+.product-title {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
   color: var(--secondary);
+  margin-bottom: 0.4rem;
 }
 
-.produit-desc {
+.product-desc {
   font-size: 0.9rem;
   color: #666666;
   margin-bottom: 1rem;
   flex: 1;
 }
 
-.produit-footer {
+.product-footer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border-color);
 }
 
-.produit-prix {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: var(--primary);
-}
-
-/* Sélecteur de quantité + / - */
-.quantite-selector {
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #ffffff;
-}
-
-.btn-qty {
-  background: #f0f0f0;
-  border: none;
-  width: 32px;
-  height: 32px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-  color: var(--secondary);
-}
-
-.btn-qty:hover {
-  background: #e0e0e0;
-}
-
-.quantite-selector input[type="number"] {
-  width: 40px;
-  height: 32px;
-  text-align: center;
-  border: none;
-  font-size: 0.95rem;
-  font-weight: bold;
-  -moz-appearance: textfield;
-}
-
-.quantite-selector input::-webkit-outer-spin-button,
-.quantite-selector input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Correction contraste bouton principal */
-.btn-primary, 
-a.btn-primary, 
-button[type="submit"] {
-  background-color: var(--primary);
-  color: #ffffff !important; /* Force le texte blanc bien visible */
-  font-weight: 700;
-  padding: 0.8rem 1.6rem;
-  border-radius: 6px;
-  border: none;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  font-size: 1rem;
-}
-
-.btn-primary:hover, 
-a.btn-primary:hover, 
-button[type="submit"]:hover {
-  background-color: var(--primary-hover);
-  color: #ffffff !important;
-}
-
-/* Section Mode de consommation */
-.mode-consommation {
-  background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 2rem;
-}
-
-.mode-options {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.mode-option {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.mode-option input[type="radio"] {
-  accent-color: var(--primary);
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-/* Titres de catégories dans la carte */
-.categorie-titre {
-  font-size: 1.4rem;
-  color: var(--secondary);
-  margin: 2.5rem 0 1rem 0;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid var(--primary);
-}
-
-/* Bloc d'affichage de la TVA */
-.tva-info {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  background-color: #eef2f7;
-  border-left: 4px solid var(--secondary);
-  font-size: 0.9rem;
-  color: var(--secondary);
-  border-radius: 4px;
-  line-height: 1.4;
-}
-
-.tva-badge {
-  font-size: 0.75rem;
-  color: #666666;
-  display: block;
-  margin-top: 0.2rem;
-  font-weight: normal;
-}
-
-/* Récapitulatif de commande (paiement.php) */
-.recap-box {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 2rem;
-}
-
-.recap-box h2 {
-  color: var(--secondary);
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  border-bottom: 2px solid var(--primary);
-  padding-bottom: 0.5rem;
-}
-
-.recap-mode {
-  background-color: #eef2f7;
-  padding: 0.65rem 1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  color: var(--secondary);
-  margin-bottom: 1.2rem;
-}
-
-.recap-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-
-.recap-table th,
-.recap-table td {
-  padding: 0.75rem 0.5rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.95rem;
-}
-
-.recap-table th {
-  color: var(--secondary);
-  background-color: #f8f9fa;
-  font-weight: 600;
-}
-
-.recap-table td.text-right,
-.recap-table th.text-right {
-  text-align: right;
-}
-
-.recap-summary {
-  margin-top: 1rem;
-  padding-top: 0.5rem;
-}
-
-.recap-line {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.4rem;
-  font-size: 0.95rem;
-}
-
-.recap-line.total {
+.product-price {
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--primary);
-  margin-top: 0.8rem;
-  padding-top: 0.8rem;
-  border-top: 2px dashed var(--border-color);
 }
 
-/* Disposition générale du checkout (2 colonnes côte à côte) */
+/* ==========================================================================
+   7. PAGE PAIEMENT & RECAPITULATIF (paiement.php)
+   ========================================================================== */
 .checkout-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
-  margin-top: 1.5rem;
 }
 
 @media (max-width: 850px) {
@@ -470,7 +345,6 @@ button[type="submit"]:hover {
   }
 }
 
-/* Carte Récapitulatif */
 .recap-card {
   background: var(--card-bg);
   border-radius: var(--radius);
@@ -499,7 +373,6 @@ button[type="submit"]:hover {
   border: 1px solid #dcdfe6;
 }
 
-/* Tableau d'articles propre et aéré */
 .recap-table {
   width: 100%;
   border-collapse: collapse;
@@ -533,15 +406,9 @@ button[type="submit"]:hover {
   color: var(--secondary);
 }
 
-.text-right {
-  text-align: right;
-}
+.text-right { text-align: right; }
+.text-center { text-align: center; }
 
-.text-center {
-  text-align: center;
-}
-
-/* Bloc des totaux */
 .recap-totals {
   background: var(--bg-color);
   padding: 1.25rem;
@@ -565,10 +432,4 @@ button[type="submit"]:hover {
   border-top: 1px dashed var(--border-color);
   padding-top: 0.8rem;
   margin-top: 0.4rem;
-}
-
-/* Alignement du formulaire dans la grille */
-.checkout-grid .form-box {
-  margin: 0;
-  max-width: 100%;
 }

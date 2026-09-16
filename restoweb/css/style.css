@@ -382,3 +382,193 @@ button[type="submit"]:hover {
   margin-top: 0.2rem;
   font-weight: normal;
 }
+
+/* Récapitulatif de commande (paiement.php) */
+.recap-box {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.recap-box h2 {
+  color: var(--secondary);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.5rem;
+}
+
+.recap-mode {
+  background-color: #eef2f7;
+  padding: 0.65rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 1.2rem;
+}
+
+.recap-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.recap-table th,
+.recap-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
+
+.recap-table th {
+  color: var(--secondary);
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.recap-table td.text-right,
+.recap-table th.text-right {
+  text-align: right;
+}
+
+.recap-summary {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+}
+
+.recap-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.recap-line.total {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 2px dashed var(--border-color);
+}
+
+/* Disposition générale du checkout (2 colonnes côte à côte) */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 850px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Carte Récapitulatif */
+.recap-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+}
+
+.recap-card h2 {
+  font-size: 1.3rem;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+.badge-mode {
+  display: inline-block;
+  background-color: #eef2f7;
+  color: var(--secondary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid #dcdfe6;
+}
+
+/* Tableau d'articles propre et aéré */
+.recap-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.recap-table th {
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666666;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.recap-table td {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+.recap-table .qty-pill {
+  display: inline-block;
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Bloc des totaux */
+.recap-totals {
+  background: var(--bg-color);
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+.total-row.final {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+/* Alignement du formulaire dans la grille */
+.checkout-grid .form-box {
+  margin: 0;
+  max-width: 100%;
+}

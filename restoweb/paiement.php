@@ -10,9 +10,7 @@
     <header>
         <h1>avalTApizza</h1>
         <p>Commandes en ligne - Étape de paiement sécurisé</p>
-        <hr>
     </header>
-        <hr>
 
         <section>
             <h2>Payer avec une carte bancaire</h2>
@@ -78,7 +76,7 @@
 
                     <p>
                         <input type="checkbox" id="savecard" name="savecard">
-                        <label for="savecard">Enregistrer cette carte pour mes prochaines pizzas chez avalTApizza</label>
+                        <label for="savecard">Enregistrer cette carte pour mes prochain achats</label>
                     </p>
 
                 </fieldset>

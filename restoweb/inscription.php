@@ -11,8 +11,8 @@
     <form id="formulaire" action="inscription.php" method="post">
     <p>
     <label for="email" >Email</label>
+    <input type="text" id="email" name="email" value="Mon email"/> <br>
     <label for="Mot de passe">Mot de passe</label>
-    <input type="text" id="email" name="email" value="Mon email"/>
     <input name="mdp" id="Mot de passe" type="password" size="10" value="" />
     </p>
     </form>

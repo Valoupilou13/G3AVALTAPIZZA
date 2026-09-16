@@ -27,7 +27,6 @@
                         <input type="text" id="cardholder" name="cardholder" required autocomplete="cc-name">
                     </div>
 
-<<<<<<< HEAD
                     <div class="form-group">
                         <label for="cardnumber">Numéro de carte bancaire</label>
                         <input type="text" id="cardnumber" name="cardnumber" required inputmode="numeric" maxlength="19" autocomplete="cc-number" placeholder="1234 5678 9101 1121">
@@ -44,43 +43,6 @@
                             <input type="text" id="cardcvc" name="cardcvc" required inputmode="numeric" maxlength="4" placeholder="123" autocomplete="cc-csc">
                         </div>
                     </div>
-=======
-                    <p>
-                        <label for="cardnumber">Numéro de carte bancaire :</label><br>
-                        <input 
-                            type="text" 
-                            id="cardnumber" 
-                            name="cardnumber" 
-                            required  
-                            maxlength="19"
-                            autocomplete="cc-number"
-                        >
-                    </p>
-
-                    <p>
-                        <label for="cardexpiry">Date d'expiration (MM/AA) :</label><br>
-                        <input 
-                            type="text" 
-                            id="cardexpiry" 
-                            name="cardexpiry" 
-                            required 
-                            maxlength="5" 
-                            autocomplete="cc-exp"
-                        >
-                    </p>
-
-                    <p>
-                        <label for="cardcvc">Code de sécurité CVC / CVV :</label><br>
-                        <input 
-                            type="text" 
-                            id="cardcvc" 
-                            name="cardcvc" 
-                            required 
-                            maxlength="4" 
-                            autocomplete="cc-csc"
-                        >
-                    </p>
->>>>>>> 2ac5a7e18ad5e6d1a15a2864cddc625b4b573a8f
 
                     <div style="margin-top: 0.5rem;">
                         <input type="checkbox" id="savecard" name="savecard">

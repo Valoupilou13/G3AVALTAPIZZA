@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Bienvenue dans la page d'inscription</h1>
 
     <p> Vous avez déja un compte ? <a href = "connexion.php" title = "linktilte"> Se connecter </a></p>
 
-    <form id="formulaire" action="inscription.php" method="post">
+    <form id="formulaire" action="index.php" method="post">
+
     <label for="email" >Email : </label> <br>
     <input type="text" id="email" name="email" value="Mon email"/> <br><br>
     <label for="pseudo" >Pseudo : </label> <br>

@@ -8,7 +8,7 @@
 <body>
     <h1>Bienvenue dans la page d'inscription</h1>
 
-    <p> Vous avez déja un compte ? <a href = "connexion.php" title = "linktilte"> Se connecter </p>
+    <p> Vous avez déja un compte ? <a href = "connexion.php" title = "linktilte"> Se connecter </a></p>
 
     <form id="formulaire" action="inscription.php" method="post">
     <label for="email" >Email : </label> <br>

@@ -86,7 +86,7 @@
 
     <footer>
         <hr>
-        <p><small>&copy; 2026 avalTApizza - Tous droits réservés. Transactions sécurisées SSL.</small></p>
+        <p><small>&copy; 2026 avalTApizza - Tous droits réservés.</small></p>
     </footer>
 
 </body>

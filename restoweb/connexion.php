@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <h2>Veillez vous connecter à votre compte </h2>
+    <h2>Veuillez vous connecter à votre compte </h2>
 
     <p>Vous n'avez pas de compte ? <a href="inscription.php" title="Linktitle">S'inscrire</a></p>
 

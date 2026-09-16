@@ -37,8 +37,7 @@
                             type="text" 
                             id="cardnumber" 
                             name="cardnumber" 
-                            required 
-                            inputmode="numeric" 
+                            required  
                             maxlength="19"
                             autocomplete="cc-number"
                         >
@@ -51,7 +50,6 @@
                             id="cardexpiry" 
                             name="cardexpiry" 
                             required 
-                            inputmode="numeric" 
                             maxlength="5" 
                             autocomplete="cc-exp"
                         >
@@ -64,7 +62,6 @@
                             id="cardcvc" 
                             name="cardcvc" 
                             required 
-                            inputmode="numeric" 
                             maxlength="4" 
                             autocomplete="cc-csc"
                         >

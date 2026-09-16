@@ -10,7 +10,8 @@
 
     <p> Vous avez déja un compte ? <a href = "connexion.php" title = "linktilte"> Se connecter </a></p>
 
-    <form id="formulaire" action="inscription.php" method="post">
+    <form id="formulaire" action="index.php" method="post">
+
     <label for="email" >Email : </label> <br>
     <input type="text" id="email" name="email" value="Mon email"/> <br><br>
     <label for="pseudo" >Pseudo : </label> <br>

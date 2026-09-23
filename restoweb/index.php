@@ -19,7 +19,7 @@
             <a href="inscription.php">Inscription</a>
             <a href="deconnexion.php">Déconnexion</a>
         </nav>
-    </header>   
+    </header>
 
     <main class="container">
         <section>

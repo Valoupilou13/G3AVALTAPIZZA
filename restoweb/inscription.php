@@ -23,7 +23,11 @@
     <main class="container">
         <div class="form-box">
             <h2>Inscription</h2>
-            <form id="formulaire" action="connexion.php" method="GET">
+            <form id="formulaire" action="" method="POST">
+                <div class="form-group">
+                    <label>Identifiant :</label>
+                    <input type="text" name="login" required>
+                </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="nom@exemple.com" required>
@@ -40,48 +44,55 @@
         </div>
     </main>
 
-    <?php
-
-// 1. Paramètres de connexion
-$dsn = 'mysql:host=localhost;dbname=mabase'; 
-$user = 'root';
-$password = '';
-
-// 2. Connexion à la base de données
-try {
-    $dbh = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $ex) {
-    die("Erreur lors de la connexion SQL : " . $ex->getMessage());
-}
-
-// 3. Traitement de l'inscription après soumission du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom = $_POST['nom'] ?? '';
-    $prenom = $_POST['prenom'] ?? '';
-    $email = $_POST['email'] ?? '';
-
-    // Ordre SQL d'insertion
-    $sql = "INSERT INTO personnes (nom, prenom, email) VALUES (:nom, :prenom, :email)";
+<?php
+// 1. Définition de la fonction de connexion à la BDD
+function db_connect() : PDO {
+    $dsn = 'mysql:host=localhost;dbname=G3AVALTAPIZZA'; 
+    $user = 'root'; 
+    $password = ''; 
 
     try {
-        // Préparation de la requête SQL
-        $sth = $dbh->prepare($sql);
+        $dbh = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $dbh;
+    } catch (PDOException $ex) {
+        die("Erreur de connexion à la BDD : " . $ex->getMessage());
+    }
+}
 
-        // Exécution avec passage des paramètres dans un tableau associatif
+$message = "";
+
+// 2. Traitement lors de la soumission du formulaire en POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Connexion à la base de données
+    $dbh = db_connect();
+
+    // Récupération des champs du formulaire
+    $login = $_POST['login'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $pass  = $_POST['mdp'] ?? ''; // Correction : 'mdp' au lieu de 'password'
+
+    // Hachage du mot de passe
+    $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
+
+    // Requête SQL d'insertion
+    $sql = "INSERT INTO utilisateur (login, password, email) VALUES (:login, :password, :email)";
+
+    try {
+        $sth = $dbh->prepare($sql);
         $sth->execute(array(
-            ':nom' => $nom,
-            ':prenom' => $prenom,
-            ':email' => $email
+            ':login'    => $login,
+            ':password' => $passwordHash,
+            ':email'    => $email
         ));
 
-        // Vérification de l'insertion
         if ($sth->rowCount() > 0) {
-            $nouveauId = $dbh->lastInsertId();
-            echo "<p>Inscription réussie ! L'utilisateur porte l'ID n° : " . $nouveauId . "</p>";
-        }
+    // Redirection vers connexion.php avec un paramètre d'information
+        header('Location: connexion.php?inscription=succes');
+        exit(); // Stoppe l'exécution du script pour forcer la redirection
+}
     } catch (PDOException $ex) {
-        die("Erreur lors de la requête SQL : " . $ex->getMessage());
+        $message = "<p style='color:red;'>Erreur lors de l'inscription : " . $ex->getMessage() . "</p>";
     }
 }
 ?>

@@ -29,10 +29,6 @@
                     <input type="email" id="email" name="email" placeholder="nom@exemple.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="pseudo">Pseudo</label>
-                    <input type="text" id="pseudo" name="pseudo" placeholder="Mon pseudo" required>
-                </div>
-                <div class="form-group">
                     <label for="mdp">Mot de passe</label>
                     <input type="password" id="mdp" name="mdp" required>
                 </div>
@@ -43,6 +39,54 @@
             </p>
         </div>
     </main>
+
+    <?php
+
+// 1. Paramètres de connexion
+$dsn = 'mysql:host=localhost;dbname=mabase'; 
+$user = 'root';
+$password = '';
+
+// 2. Connexion à la base de données
+try {
+    $dbh = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $ex) {
+    die("Erreur lors de la connexion SQL : " . $ex->getMessage());
+}
+
+// 3. Traitement de l'inscription après soumission du formulaire
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nom = $_POST['nom'] ?? '';
+    $prenom = $_POST['prenom'] ?? '';
+    $email = $_POST['email'] ?? '';
+
+    // Ordre SQL d'insertion
+    $sql = "INSERT INTO personnes (nom, prenom, email) VALUES (:nom, :prenom, :email)";
+
+    try {
+        // Préparation de la requête SQL
+        $sth = $dbh->prepare($sql);
+
+        // Exécution avec passage des paramètres dans un tableau associatif
+        $sth->execute(array(
+            ':nom' => $nom,
+            ':prenom' => $prenom,
+            ':email' => $email
+        ));
+
+        // Vérification de l'insertion
+        if ($sth->rowCount() > 0) {
+            $nouveauId = $dbh->lastInsertId();
+            echo "<p>Inscription réussie ! L'utilisateur porte l'ID n° : " . $nouveauId . "</p>";
+        }
+    } catch (PDOException $ex) {
+        die("Erreur lors de la requête SQL : " . $ex->getMessage());
+    }
+}
+?>
+
+
 
     <footer>
         <p>&copy; 2026 AVALTAPIZZA - Tous droits réservés</p>

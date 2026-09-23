@@ -1,12 +1,10 @@
-<?php
-// Fichier : index.php
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVALTAPIZZA - Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -21,44 +19,30 @@
             <a href="inscription.php">Inscription</a>
             <a href="deconnexion.php">Déconnexion</a>
         </nav>
-    </header>
+    </header>   
 
-    <main>
-
+    <main class="container">
         <section>
             <h2>À propos de notre pizzeria</h2>
             <p>
-                Chez <strong>AVALTAPIZZA</strong>, nous préparons nos pizzas avec des ingrédients frais et sélectionnés avec soin. 
-                Consultez notre carte, faites votre choix en quelques clics et choisissez de manger sur place ou à emporter.
+                Chez <strong>AVALTAPIZZA</strong>, nous préparons nos pizzas avec des ingrédients frais et sélectionnés. 
+                Consultez notre carte, faites votre choix en quelques clics et indiquez si vous souhaitez manger sur place ou emporter votre commande.
             </p>
-            <div>
-                <a href="connexion.php">Se connecter</a>
-                <a href="inscription.php">S'inscrire</a>
-                <a href="produits.php">Voir la carte</a>
-            </div>
         </section>
 
         <section>
-            <div>
-                <div>
-                    <h3>Pâte Artisanale</h3>
-                    <p>Pétrie chaque jour sur place et maturée au minimum 24h pour une pâte croustillante et digeste.</p>
-                </div>
-                <div>
-                    <h3>Produits Frais</h3>
-                    <p>Ingrédients soigneusement sélectionnés : légumes locaux, charcuteries et fromages italiens AOP.</p>
-                </div>
-                <div>
-                    <h3>Sur Place ou À Emporter</h3>
-                    <p>Commandez en ligne et choisissez votre mode de dégustation en un instant.</p>
-                </div>
+            <h2>Rejoignez-nous pour commander</h2>
+            <p>Pour passer votre commande, veuillez vous identifier ou créer un compte client :</p>
+            <div class="auth-buttons">
+                <a href="connexion.php" class="btn-primary">Se connecter</a>
+                <a href="inscription.php" class="btn-secondary">S'inscrire</a>
+                <a href="produits.php" class="btn-primary">Voir la carte</a>
             </div>
         </section>
-
     </main>
 
     <footer>
-        <p>&copy; <?php echo date("Y"); ?> AVALTAPIZZA - Tous droits réservés</p>
+        <p>&copy; 2026 AVALTAPIZZA - Tous droits réservés</p>
     </footer>
 
 </body>

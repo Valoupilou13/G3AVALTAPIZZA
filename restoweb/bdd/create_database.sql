@@ -56,16 +56,29 @@ CREATE TABLE `ligne_commande` (
 -- Déclencheurs `ligne_commande`
 --
 DELIMITER $$
-CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `ligne_commande` FOR EACH ROW BEGIN
-    DECLARE somme_ht DECIMAL(10,2);
+CREATE TRIGGER `after_ligne_update` 
+AFTER UPDATE ON `ligne_commande` 
+FOR EACH ROW 
+BEGIN
+    DECLARE mode_conso INT;
+    DECLARE mult_tva DECIMAL(4,3);
 
-    SELECT COALESCE(SUM(total_ligne_ht), 0)
-    INTO somme_ht
-    FROM ligne_commande
+    SELECT type_conso INTO mode_conso 
+    FROM commande 
     WHERE id_commande = NEW.id_commande;
 
+    IF mode_conso = 2 THEN
+        SET mult_tva = 1.055;
+    ELSE
+        SET mult_tva = 1.10;
+    END IF;
+
     UPDATE commande
-    SET total_commande = somme_ht * 1.20
+    SET total_commande = (
+        SELECT SUM(total_ligne_ht) * mult_tva
+        FROM ligne_commande
+        WHERE id_commande = NEW.id_commande
+    )
     WHERE id_commande = NEW.id_commande;
 END
 $$
@@ -73,12 +86,32 @@ DELIMITER ;
 
 
 DELIMITER $$
-CREATE TRIGGER `maj_total_commande_after_insert` AFTER INSERT ON `ligne_commande` FOR EACH ROW BEGIN
+CREATE TRIGGER `maj_total_commande_after_insert` 
+AFTER INSERT ON `ligne_commande` 
+FOR EACH ROW 
+BEGIN
+    DECLARE mode_conso INT;
+    DECLARE mult_tva DECIMAL(4,3);
+
+    -- Récupération du mode de consommation (1 = Sur place, 2 = À emporter)
+    SELECT type_conso INTO mode_conso 
+    FROM commande 
+    WHERE id_commande = NEW.id_commande;
+
+    -- Application du taux correspondant
+    IF mode_conso = 2 THEN
+        SET mult_tva = 1.055; -- 5,5 % à emporter
+    ELSE
+        SET mult_tva = 1.10;  -- 10 % sur place
+    END IF;
+
+    -- Mise à jour du total TTC de la commande
     UPDATE commande
     SET total_commande = (
-        SELECT SUM(total_ligne_ht) * 1.20
+        SELECT SUM(total_ligne_ht) * mult_tva
         FROM ligne_commande
-        WHERE id_commande = NEW.id_commande)
+        WHERE id_commande = NEW.id_commande
+    )
     WHERE id_commande = NEW.id_commande;
 END
 $$
@@ -91,12 +124,12 @@ FOR EACH ROW
 BEGIN
     DECLARE p_prix DECIMAL(10,2);
     
-    -- Récupération du prix HT dans la table produit
+    -- Récupération du prix HT du produit
     SELECT prix_ht INTO p_prix 
     FROM produit 
     WHERE id_produit = NEW.id_produit;
     
-    -- Calcul automatique du total HT de la ligne
+    -- Calcul du total HT de la ligne
     SET NEW.total_ligne_ht = NEW.qte * p_prix;
 END
 $$

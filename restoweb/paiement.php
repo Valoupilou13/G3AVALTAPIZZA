@@ -150,7 +150,7 @@ $typeConso = (int) $commandeInfo['type_conso'];
             <section class="form-box">
                 <h2>Payer par Carte Bancaire</h2>
 
-                <form action="confirmer.php" method="GET">
+                <form action="confirmation.php" method="GET">
                     <input type="hidden" name="id_commande" value="<?= $idCommande ?>">
                     <input type="hidden" name="total" value="<?= number_format($totalCommandeTTC, 2, '.', '') ?>">
 

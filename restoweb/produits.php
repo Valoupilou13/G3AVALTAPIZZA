@@ -101,7 +101,18 @@ foreach ($produits as $p) {
                                 $prixHT = (float) $prod['prix_ht'];
                             ?>
                                 <div class="produit-card">
-                                    <img src="images/pizza.jpg" alt="<?= htmlspecialchars($prod['libelle']) ?>" class="produit-img">
+    <?php 
+        // Vérification de la présence de l'image dans le dossier img/
+        $nomImage = !empty($prod['image']) ? $prod['image'] : 'default.jpg';
+        $cheminImage = 'img/' . $nomImage;
+
+        if (!file_exists($cheminImage)) {
+            $cheminImage = 'img/default.jpg';
+        }
+    ?>
+    <img src="<?= $cheminImage ?>" alt="<?= htmlspecialchars($prod['libelle']) ?>" class="produit-img">
+    
+   
                                     <div class="produit-content">
                                         <h3 class="produit-titre"><?= htmlspecialchars($prod['libelle']) ?></h3>
                                         <div class="produit-footer">

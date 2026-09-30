@@ -151,28 +151,28 @@ DELIMITER ;
 -- Structure de la table `produit`
 --
 
-CREATE TABLE `produit` (
-  `id_produit` int(11) NOT NULL,
-  `libelle` varchar(255) NOT NULL,
-  `prix_ht` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+-- Structure de la table produit
+CREATE TABLE IF NOT EXISTS produit (
+    id_produit INT AUTO_INCREMENT PRIMARY KEY,
+    libelle VARCHAR(100) NOT NULL,
+    prix_ht DECIMAL(10,2) NOT NULL,
+    image VARCHAR(255) DEFAULT 'default.jpg'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `produit`
---
-
-INSERT INTO `produit` (`id_produit`, `libelle`, `prix_ht`) VALUES
-(1, 'Menu Solo', 12.73),
-(2, 'Menu Duo', 25.00),
-(3, 'Pizza Margherita', 8.64),
-(4, 'Pizza Reine', 10.45),
-(5, 'Pizza 4 Fromages', 11.36),
-(6, 'Pizza Orientale', 10.91),
-(7, 'Tiramisu Maison', 4.09),
-(8, 'Panna Cotta', 3.64),
-(9, 'Soda 33cl', 2.27),
-(10, 'Eau Minérale 50cl', 1.82),
-(11, 'Bière Italienne 33cl', 3.33);
+-- Données de test
+INSERT INTO produit (libelle, prix_ht, image) VALUES
+('Pizza Margherita', 8.50, 'margherita.jpg'),
+('Pizza 4 Fromages', 10.00, '4fromages.jpg'),
+('Pizza Reine', 9.50, 'reina.jpg'),
+('Pizza Calzone', 9.50, 'calzone.jpg'),
+('Pizza Orientale', 10.00, 'orientale.jpg'),
+('Soda 33cl', 2.27, 'soda.jpg'),
+('Bière 33cl', 3.00, 'biere.jpg'),
+('Tiramisu', 3.50, 'tiramisu.jpg'),
+('Panna Cotta', 3.50, 'pannacotta.jpg'),
+('Menu Solo', 11.50, 'menu_solo.jpg'),
+('Menu Duo', 20.00, 'menu_duo.jpg'),
+('Menu Maxi', 28.00, 'menu_maxi.jpg');
 
 -- --------------------------------------------------------
 

@@ -16,11 +16,14 @@ try {
     die("Erreur de connexion : " . $e->getMessage());
 }
 
-// 2. Récupération des produits
+// 2. Vérification de la connexion de l'utilisateur
+$estConnecte = isset($_SESSION['user']);
+$loginUser = $_SESSION['user']['login'] ?? '';
+
+// 3. Récupération des produits
 $stmt = $pdo->query("SELECT * FROM produit ORDER BY id_produit ASC");
 $produits = $stmt->fetchAll();
 
-// Fonctions utilitaires
 function getCategorie($libelle) {
     $lib = strtolower($libelle);
     if (str_contains($lib, 'menu')) return 'Menus';
@@ -31,12 +34,11 @@ function getCategorie($libelle) {
 
 function getTauxTVA($libelle) {
     if (str_contains(strtolower($libelle), 'bière') || str_contains(strtolower($libelle), 'biere')) {
-        return 0.20; // 20% sur l'alcool
+        return 0.20;
     }
-    return 0.10; // 10% par défaut sur la restauration
+    return 0.10;
 }
 
-// 3. Regroupement par catégorie
 $produitsParCategorie = [];
 foreach ($produits as $p) {
     $cat = getCategorie($p['libelle']);
@@ -59,16 +61,19 @@ foreach ($produits as $p) {
         <nav>
             <a href="index.php">Accueil</a>
             <a href="produits.php">Carte & Produits</a>
-            <a href="connexion.php">Connexion</a>
-            <a href="inscription.php">Inscription</a>
-            <a href="deconnexion.php">Déconnexion</a>
+            <?php if ($estConnecte) : ?>
+                <a href="deconnexion.php">Déconnexion (<?= htmlspecialchars($loginUser) ?>)</a>
+            <?php else : ?>
+                <a href="connexion.php">Connexion</a>
+                <a href="inscription.php">Inscription</a>
+            <?php endif; ?>
         </nav>
     </header>
 
     <main class="container">
         <form action="paiement.php" method="POST">
 
-            <!-- 1. Mode de consommation -->
+            <!-- Mode de consommation -->
             <section class="mode-consommation">
                 <h2>1. Mode de consommation</h2>
                 <div class="mode-options">
@@ -87,7 +92,7 @@ foreach ($produits as $p) {
                 </div>
             </section>
 
-            <!-- 2. Sélection des produits depuis la BDD -->
+            <!-- Sélection des produits -->
             <section>
                 <h2>2. Notre Carte</h2>
 
@@ -124,8 +129,19 @@ foreach ($produits as $p) {
                     <?php endforeach; ?>
                 <?php endif; ?>
 
-                <div class="auth-buttons">
-                    <button type="submit" class="btn-primary">Passer la commande</button>
+                <!-- Zone de validation conditionnelle -->
+                <div style="margin-top: 2rem; text-align: center;">
+                    <?php if ($estConnecte) : ?>
+                        <button type="submit" class="btn-primary">Passer la commande</button>
+                    <?php else : ?>
+                        <div style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 1rem;">
+                            <strong>Connexion requise :</strong> Vous devez être connecté à votre compte pour pouvoir passer une commande.
+                        </div>
+                        <div class="auth-buttons" style="justify-content: center;">
+                            <a href="connexion.php" class="btn-primary">Se connecter</a>
+                            <a href="inscription.php" class="btn-secondary">Créer un compte</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </section>
 

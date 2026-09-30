@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 30 sep. 2026 à 16:25
+-- Généré le : mer. 30 sep. 2026 à 16:35
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -56,7 +56,11 @@ INSERT INTO `commande` (`id_commande`, `id_user`, `date_commande`, `total_comman
 (12, 8, '2026-09-30 12:06:30', 5.45, 2),
 (13, 8, '2026-09-30 12:11:39', 4.79, 2),
 (14, 8, '2026-09-30 12:11:47', 4.99, 1),
-(15, 8, '2026-09-30 12:32:45', 4.00, 1);
+(15, 8, '2026-09-30 12:32:45', 4.00, 1),
+(16, 8, '2026-09-30 14:27:52', 4.99, 1),
+(17, 8, '2026-09-30 14:28:45', 8.01, 1),
+(18, 8, '2026-09-30 14:32:54', 36.51, 1),
+(19, 8, '2026-09-30 14:34:29', 6.60, 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +95,13 @@ INSERT INTO `ligne_commande` (`id_ligne_commande`, `id_commande`, `id_produit`, 
 (12, 12, 9, 2, 4.54),
 (13, 13, 9, 2, 4.54),
 (14, 14, 9, 2, 4.54),
-(15, 15, 10, 2, 3.64);
+(15, 15, 10, 2, 3.64),
+(16, 16, 9, 2, 4.54),
+(17, 17, 8, 2, 7.28),
+(18, 18, 7, 5, 20.45),
+(19, 18, 8, 2, 7.28),
+(20, 18, 10, 3, 5.46),
+(21, 19, 9, 3, 6.00);
 
 --
 -- Déclencheurs `ligne_commande`
@@ -193,17 +203,17 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`id_produit`, `libelle`, `prix_ht`, `image`) VALUES
-(1, 'Menu Solo', 12.73, 'menu_solo.jpg'),
+(1, 'Menu Solo', 12.00, 'menu_solo.jpg'),
 (2, 'Menu Duo', 25.00, 'menu_duo.jpg'),
-(3, 'Pizza Margherita', 8.64, 'margherita.jpg'),
-(4, 'Pizza Reine', 10.45, 'reina.jpg'),
-(5, 'Pizza 4 Fromages', 11.36, '4fromages.jpg'),
-(6, 'Pizza Orientale', 10.91, 'orientale.jpg'),
-(7, 'Tiramisu Maison', 4.09, 'tiramisu.jpg'),
-(8, 'Panna Cotta', 3.64, 'pannacotta.jpg'),
-(9, 'Soda 33cl', 2.27, 'soda.jpg'),
-(10, 'Eau Minérale 50cl', 1.82, 'eau.jpg'),
-(11, 'Bière Italienne 33cl', 3.33, 'biere.jpg');
+(3, 'Pizza Margherita', 8.00, 'margherita.jpg'),
+(4, 'Pizza Reine', 10.00, 'reina.jpg'),
+(5, 'Pizza 4 Fromages', 11.00, '4fromages.jpg'),
+(6, 'Pizza Orientale', 10.00, 'orientale.jpg'),
+(7, 'Tiramisu Maison', 4.00, 'tiramisu.jpg'),
+(8, 'Panna Cotta', 3.00, 'pannacotta.jpg'),
+(9, 'Soda 33cl', 2.00, 'soda.jpg'),
+(10, 'Eau Minérale 50cl', 1.00, 'eau.jpg'),
+(11, 'Bière Italienne 33cl', 3.00, 'biere.jpg');
 
 -- --------------------------------------------------------
 
@@ -267,13 +277,13 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `ligne_commande`
 --
 ALTER TABLE `ligne_commande`
-  MODIFY `id_ligne_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_ligne_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `produit`

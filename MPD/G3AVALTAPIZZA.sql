@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 30 sep. 2026 à 13:01
+-- Généré le : mer. 30 sep. 2026 à 13:09
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `AVALTAPIZZA`
+-- Base de données : `G3AVALTAPIZZA`
 --
-CREATE DATABASE IF NOT EXISTS `AVALTAPIZZA` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `AVALTAPIZZA`;
+CREATE DATABASE IF NOT EXISTS `G3AVALTAPIZZA` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `G3AVALTAPIZZA`;
 
 -- --------------------------------------------------------
 

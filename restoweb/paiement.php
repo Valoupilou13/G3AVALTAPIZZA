@@ -7,14 +7,14 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-// 2. Connexion à la BDD
+// 2. Connexion BDD
 $host = 'localhost';
 $dbname = 'G3AVALTAPIZZA';
 $username = 'root';
 $password = '';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, [
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ]);
@@ -25,123 +25,64 @@ try {
 $idUser = $_SESSION['user']['id_user'];
 $loginUser = $_SESSION['user']['login'];
 
-// Fonction de calcul de la TVA
-function getTauxTVA(string $libelle, int $typeConso): float {
-    $lib = strtolower($libelle);
-    // Alcool = 20%
-    if (str_contains($lib, 'bière') || str_contains($lib, 'biere')) {
-        return 0.20;
-    }
-    // Sur place = 10%
-    if ($typeConso === 1) {
-        return 0.10;
-    }
-    // À emporter : 5.5% sur boissons non alcoolisées et desserts
-    if (str_contains($lib, 'soda') || str_contains($lib, 'eau') || str_contains($lib, 'tiramisu') || str_contains($lib, 'panna')) {
-        return 0.055;
-    }
-    return 0.10; // Pizzas et menus
-}
-
-$articlesPanier = [];
-$totalHT = 0.0;
-$totalTVA = 0.0;
-$totalTTC = 0.0;
-$idCommande = null;
-$typeConso = 1;
-
-// 3. Traitement lors de la validation depuis produits.php (POST)
+// 3. Traitement de la commande soumise depuis produits.php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite'])) {
     $typeConso = (int) ($_POST['mode'] ?? 1);
-    $quantites = $_POST['quantite']; // tableau [id_produit => quantite]
+    $quantites = $_POST['quantite']; // [id_produit => qte]
 
-    // Filtrer les produits commandés (quantité > 0)
-    $idsProduits = [];
-    foreach ($quantites as $idProd => $qte) {
-        if ((int)$qte > 0) {
-            $idsProduits[] = (int)$idProd;
-        }
-    }
-
-    if (empty($idsProduits)) {
+    // Vérification qu'au moins un produit a été sélectionné
+    $panierFiltre = array_filter($quantites, fn($q) => (int)$q > 0);
+    if (empty($panierFiltre)) {
         header('Location: produits.php?erreur=panier_vide');
         exit();
     }
 
-    // Récupérer les informations des produits choisis en BDD
-    $inClause = implode(',', array_fill(0, count($idsProduits), '?'));
-    $stmt = $pdo->prepare("SELECT * FROM produit WHERE id_produit IN ($inClause)");
-    $stmt->execute($idsProduits);
-    $produitsBDD = $stmt->fetchAll();
-
-    // Calculs de la commande
-    foreach ($produitsBDD as $prod) {
-        $idP = $prod['id_produit'];
-        $qte = (int)$quantites[$idP];
-        $prixHT = (float)$prod['prix_ht'];
-        $ligneHT = $prixHT * $qte;
-
-        $tauxTVA = getTauxTVA($prod['libelle'], $typeConso);
-        $ligneTVA = $ligneHT * $tauxTVA;
-        $ligneTTC = $ligneHT + $ligneTVA;
-
-        $totalHT += $ligneHT;
-        $totalTVA += $ligneTVA;
-        $totalTTC += $ligneTTC;
-
-        $articlesPanier[] = [
-            'id_produit' => $idP,
-            'libelle' => $prod['libelle'],
-            'qte' => $qte,
-            'prix_ht' => $prixHT,
-            'ligne_ht' => $ligneHT,
-            'ligne_ttc' => $ligneTTC
-        ];
-    }
-
-    // Insertion de la commande en BDD
-    $stmtCmd = $pdo->prepare("INSERT INTO commande (id_user, date_commande, total_commande, type_conso) VALUES (:id_user, NOW(), :total, :type_conso)");
+    // A. Insertion initiale de la commande (les triggers mettront à jour total_commande)
+    $stmtCmd = $pdo->prepare("INSERT INTO commande (id_user, date_commande, total_commande, type_conso) VALUES (:id_user, NOW(), 0, :type_conso)");
     $stmtCmd->execute([
         'id_user' => $idUser,
-        'total' => $totalTTC,
         'type_conso' => $typeConso
     ]);
     $idCommande = $pdo->lastInsertId();
 
-    // Insertion des lignes de commande en BDD
-    $stmtLigne = $pdo->prepare("INSERT INTO ligne_commande (id_commande, id_produit, qte, total_ligne_ht) VALUES (:id_commande, :id_produit, :qte, :total_ligne_ht)");
-    foreach ($articlesPanier as $art) {
+    // B. Insertion des lignes de commande
+    // Les triggers 'before_ligne_insert' et 'after_ligne_insert' feront tous les calculs HT et TTC
+    $stmtLigne = $pdo->prepare("INSERT INTO ligne_commande (id_commande, id_produit, qte, total_ligne_ht) VALUES (:id_commande, :id_produit, :qte, 0)");
+    
+    foreach ($panierFiltre as $idProd => $qte) {
         $stmtLigne->execute([
             'id_commande' => $idCommande,
-            'id_produit' => $art['id_produit'],
-            'qte' => $art['qte'],
-            'total_ligne_ht' => $art['ligne_ht']
+            'id_produit' => (int)$idProd,
+            'qte' => (int)$qte
         ]);
     }
 
-    // Sauvegarde en session pour rechargement éventuel
-    $_SESSION['commande_active'] = [
-        'id_commande' => $idCommande,
-        'type_conso' => $typeConso,
-        'articles' => $articlesPanier,
-        'total_ht' => $totalHT,
-        'total_tva' => $totalTVA,
-        'total_ttc' => $totalTTC
-    ];
+    // Sauvegarde de l'ID en session pour consultation
+    $_SESSION['derniere_commande_id'] = $idCommande;
 
-} elseif (isset($_SESSION['commande_active'])) {
-    // Récupération si la page est rafraîchie
-    $cmdSession = $_SESSION['commande_active'];
-    $idCommande = $cmdSession['id_commande'];
-    $typeConso = $cmdSession['type_conso'];
-    $articlesPanier = $cmdSession['articles'];
-    $totalHT = $cmdSession['total_ht'];
-    $totalTVA = $cmdSession['total_tva'];
-    $totalTTC = $cmdSession['total_ttc'];
+} elseif (isset($_SESSION['derniere_commande_id'])) {
+    $idCommande = $_SESSION['derniere_commande_id'];
 } else {
     header('Location: produits.php');
     exit();
 }
+
+// 4. Lecture des valeurs CALCULÉES PAR LES TRIGGERS dans la BDD
+$stmtGetCmd = $pdo->prepare("SELECT * FROM commande WHERE id_commande = :id");
+$stmtGetCmd->execute(['id' => $idCommande]);
+$commandeInfo = $stmtGetCmd->fetch();
+
+$stmtGetLignes = $pdo->prepare("
+    SELECT lc.*, p.libelle, p.prix_ht 
+    FROM ligne_commande lc
+    JOIN produit p ON lc.id_produit = p.id_produit
+    WHERE lc.id_commande = :id
+");
+$stmtGetLignes->execute(['id' => $idCommande]);
+$lignesCommande = $stmtGetLignes->fetchAll();
+
+$totalCommandeTTC = (float) $commandeInfo['total_commande'];
+$typeConso = (int) $commandeInfo['type_conso'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -168,12 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite'])) {
 
         <div class="checkout-grid">
 
-            <!-- Récapitulatif dynamique depuis BDD -->
+            <!-- Récapitulatif généré directement par les données calculées de la BDD -->
             <section class="recap-card">
                 <h2>Récapitulatif de la commande n° <?= htmlspecialchars($idCommande) ?></h2>
                 
                 <div class="badge-mode">
-                    Mode retenu : <strong><?= $typeConso === 1 ? 'Sur place' : 'À emporter' ?></strong>
+                    Mode retenu : <strong><?= $typeConso === 1 ? 'Sur place (TVA 10%)' : 'À emporter (TVA 5,5%)' ?></strong>
                 </div>
 
                 <table class="recap-table">
@@ -182,33 +123,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite'])) {
                             <th>Article</th>
                             <th class="text-center">Qté</th>
                             <th class="text-right">Prix U. HT</th>
-                            <th class="text-right">Total TTC</th>
+                            <th class="text-right">Total HT (Calculé)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($articlesPanier as $item) : ?>
+                        <?php foreach ($lignesCommande as $item) : ?>
                             <tr>
                                 <td><strong><?= htmlspecialchars($item['libelle']) ?></strong></td>
                                 <td class="text-center"><span class="qty-pill"><?= $item['qte'] ?></span></td>
                                 <td class="text-right"><?= number_format($item['prix_ht'], 2, ',', ' ') ?> €</td>
-                                <td class="text-right"><strong><?= number_format($item['ligne_ttc'], 2, ',', ' ') ?> €</strong></td>
+                                <td class="text-right"><strong><?= number_format($item['total_ligne_ht'], 2, ',', ' ') ?> €</strong></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
 
                 <div class="recap-totals">
-                    <div class="total-row">
-                        <span>Sous-total HT :</span>
-                        <span><?= number_format($totalHT, 2, ',', ' ') ?> €</span>
-                    </div>
-                    <div class="total-row">
-                        <span>TVA :</span>
-                        <span><?= number_format($totalTVA, 2, ',', ' ') ?> €</span>
-                    </div>
                     <div class="total-row final">
-                        <span>Total TTC :</span>
-                        <span><?= number_format($totalTTC, 2, ',', ' ') ?> €</span>
+                        <span>Total TTC à payer :</span>
+                        <span><?= number_format($totalCommandeTTC, 2, ',', ' ') ?> €</span>
                     </div>
                 </div>
             </section>
@@ -219,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite'])) {
 
                 <form action="confirmer.php" method="GET">
                     <input type="hidden" name="id_commande" value="<?= $idCommande ?>">
-                    <input type="hidden" name="total" value="<?= number_format($totalTTC, 2, '.', '') ?>">
+                    <input type="hidden" name="total" value="<?= number_format($totalCommandeTTC, 2, '.', '') ?>">
 
                     <fieldset>
                         <legend>Informations de paiement</legend>
@@ -247,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite'])) {
                         </div>
                     </fieldset>
 
-                    <button type="submit" class="btn-primary">Payer <?= number_format($totalTTC, 2, ',', ' ') ?> €</button>
+                    <button type="submit" class="btn-primary">Payer <?= number_format($totalCommandeTTC, 2, ',', ' ') ?> €</button>
                 </form>
             </section>
 

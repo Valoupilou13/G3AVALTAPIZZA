@@ -8,7 +8,7 @@ $username = 'root';
 $password = '';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, [
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ]);
@@ -30,13 +30,6 @@ function getCategorie($libelle) {
     if (str_contains($lib, 'pizza')) return 'Nos Pizzas Artisanales';
     if (str_contains($lib, 'tiramisu') || str_contains($lib, 'panna')) return 'Desserts';
     return 'Boissons';
-}
-
-function getTauxTVA($libelle) {
-    if (str_contains(strtolower($libelle), 'bière') || str_contains(strtolower($libelle), 'biere')) {
-        return 0.20;
-    }
-    return 0.10;
 }
 
 $produitsParCategorie = [];
@@ -87,8 +80,9 @@ foreach ($produits as $p) {
                     </label>
                 </div>
 
+                <!-- Message d'information TVA conforme BDD -->
                 <div id="tva-box" class="tva-info">
-                    <strong>TVA appliquée (Sur place) :</strong> 10 % sur les pizzas, plats préparés, desserts et sodas ; 20 % sur l'alcool.
+                    <strong>TVA appliquée (Sur place) :</strong> 10 % sur l'ensemble de la commande.
                 </div>
             </section>
 
@@ -104,8 +98,7 @@ foreach ($produits as $p) {
                         
                         <div class="grid-produits">
                             <?php foreach ($listeProduits as $prod) : 
-                                $tva = getTauxTVA($prod['libelle']);
-                                $prixTTC = $prod['prix_ht'] * (1 + $tva);
+                                $prixHT = (float) $prod['prix_ht'];
                             ?>
                                 <div class="produit-card">
                                     <img src="images/pizza.jpg" alt="<?= htmlspecialchars($prod['libelle']) ?>" class="produit-img">
@@ -113,8 +106,7 @@ foreach ($produits as $p) {
                                         <h3 class="produit-titre"><?= htmlspecialchars($prod['libelle']) ?></h3>
                                         <div class="produit-footer">
                                             <div>
-                                                <span class="produit-prix"><?= number_format($prixTTC, 2, '.', '') ?> € TTC</span>
-                                                <span class="tva-badge">HT : <?= number_format($prod['prix_ht'], 2, '.', '') ?> €</span>
+                                                <span class="produit-prix"><?= number_format($prixHT, 2, ',', ' ') ?> € HT</span>
                                             </div>
                                             <div class="quantite-selector">
                                                 <button type="button" class="btn-qty" onclick="changeQty(this, -1)">-</button>
@@ -166,9 +158,9 @@ foreach ($produits as $p) {
         const tvaBox = document.getElementById('tva-box');
         
         if (mode === '1') {
-            tvaBox.innerHTML = '<strong>TVA appliquée (Sur place) :</strong> 10 % sur les pizzas, plats préparés, desserts et sodas ; 20 % sur l\'alcool.';
+            tvaBox.innerHTML = '<strong>TVA appliquée (Sur place) :</strong> 10 % sur l\'ensemble de la commande.';
         } else {
-            tvaBox.innerHTML = '<strong>TVA appliquée (À emporter) :</strong> 10 % sur les pizzas chaudes et plats préparés ; 5,5 % sur les boissons sous emballage et desserts ; 20 % sur l\'alcool.';
+            tvaBox.innerHTML = '<strong>TVA appliquée (À emporter) :</strong> 5,5 % sur l\'ensemble de la commande.';
         }
     }
     </script>

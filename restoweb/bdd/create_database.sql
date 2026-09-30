@@ -84,8 +84,6 @@ END
 $$
 DELIMITER ;
 
-
-
 DELIMITER $$
 CREATE TRIGGER `calcul_total_ligne_before_insert` 
 BEFORE INSERT ON `ligne_commande` 
@@ -103,8 +101,6 @@ BEGIN
 END
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `produit`

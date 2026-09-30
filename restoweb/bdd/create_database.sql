@@ -71,6 +71,19 @@ END
 $$
 DELIMITER ;
 
+
+DELIMITER $$
+CREATE TRIGGER `maj_total_commande_after_insert` AFTER INSERT ON `ligne_commande` FOR EACH ROW BEGIN
+    UPDATE commande
+    SET total_commande = (
+        SELECT SUM(total_ligne_ht) * 1.20
+        FROM ligne_commande
+        WHERE id_commande = NEW.id_commande)
+    WHERE id_commande = NEW.id_commande;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --

@@ -84,6 +84,26 @@ END
 $$
 DELIMITER ;
 
+
+
+DELIMITER $$
+CREATE TRIGGER `calcul_total_ligne_before_insert` 
+BEFORE INSERT ON `ligne_commande` 
+FOR EACH ROW 
+BEGIN
+    DECLARE p_prix DECIMAL(10,2);
+    
+    -- Récupération du prix HT dans la table produit
+    SELECT prix_ht INTO p_prix 
+    FROM produit 
+    WHERE id_produit = NEW.id_produit;
+    
+    -- Calcul automatique du total HT de la ligne
+    SET NEW.total_ligne_ht = NEW.qte * p_prix;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --

@@ -51,6 +51,26 @@ CREATE TABLE `ligne_commande` (
   `total_ligne_ht` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+
+--
+-- Déclencheurs `ligne_commande`
+--
+DELIMITER $$
+CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `ligne_commande` FOR EACH ROW BEGIN
+    DECLARE somme_ht DECIMAL(10,2);
+
+    SELECT COALESCE(SUM(total_ligne_ht), 0)
+    INTO somme_ht
+    FROM ligne_commande
+    WHERE id_commande = NEW.id_commande;
+
+    UPDATE commande
+    SET total_commande = somme_ht * 1.20
+    WHERE id_commande = NEW.id_commande;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --

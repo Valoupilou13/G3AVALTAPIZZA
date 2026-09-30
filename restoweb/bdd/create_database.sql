@@ -102,6 +102,18 @@ END
 $$
 DELIMITER ;
 
+
+DELIMITER $$
+CREATE TRIGGER `before_ligne_update` BEFORE UPDATE ON `ligne_commande` FOR EACH ROW BEGIN
+    /* Recalcul du total HT de la ligne à partir du prix du produit */
+    SET NEW.total_ligne_ht = NEW.qte * (
+        SELECT prix_ht 
+        FROM produit 
+        WHERE id_produit = NEW.id_produit
+    );
+END
+$$
+DELIMITER ;
 --
 -- Structure de la table `produit`
 --

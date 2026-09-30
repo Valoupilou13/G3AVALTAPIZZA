@@ -3,23 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
+    <title>AVALTAPIZZA - Inscription</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Bienvenue dans la page d'inscription</h1>
 
-    <p> Vous avez déja un compte ? <a href = "connexion.php" title = "linktilte"> Se connecter </a></p>
+    <header>
+        <img src="img/logo.png" alt="Logo AVALTAPIZZA">
+        <h1>AVALTAPIZZA</h1>
+        <nav>
+            <a href="index.php">Accueil</a>
+            <a href="produits.php">Carte & Produits</a>
+            <a href="connexion.php">Connexion</a>
+            <a href="inscription.php">Inscription</a>
+            <a href="deconnexion.php">Déconnexion</a>
+        </nav>
+    </header>
 
-    <form id="formulaire" action="index.php" method="post">
+    <main class="container">
+        <div class="form-box">
+            <h2>Inscription</h2>
+            <form id="formulaire" action="connexion.php" method="GET">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="nom@exemple.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="pseudo">Pseudo</label>
+                    <input type="text" id="pseudo" name="pseudo" placeholder="Mon pseudo" required>
+                </div>
+                <div class="form-group">
+                    <label for="mdp">Mot de passe</label>
+                    <input type="password" id="mdp" name="mdp" required>
+                </div>
+                <button type="submit" name="submit" class="btn-primary">S'inscrire</button>
+            </form>
+            <p class="form-text-link">
+                Vous avez déjà un compte ? <a href="connexion.php">Se connecter</a>
+            </p>
+        </div>
+    </main>
 
-    <label for="email" >Email : </label> <br>
-    <input type="text" id="email" name="email" value="Mon email"/> <br><br>
-    <label for="pseudo" >Pseudo : </label> <br>
-    <input type="text" id="pseudo" name="pseudo" value="Mon pseudo"/> <br><br>
-    <label for="Mot de passe">Mot de passe :</label> <br>
-    <input name="mdp" id="Mot de passe" type="password" size="10" value="" /> <br><br>
-    <input type="submit" name="submit" value="S'inscrire" />
-    </form>
+    <footer>
+        <p>&copy; 2026 AVALTAPIZZA - Tous droits réservés</p>
+    </footer>
+
 </body>
 </html>

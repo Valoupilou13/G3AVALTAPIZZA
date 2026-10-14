@@ -306,7 +306,8 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `commande`
   ADD CONSTRAINT `fk_commande_utilisateur` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`) ON UPDATE CASCADE;
-
+-- Ajout de la colonne id_etat (1 = En attente / Payée, 2 = En préparation, 3 = Prête, 4 = Abandonnée)
+ALTER TABLE `commande` ADD COLUMN `id_etat` INT NOT NULL DEFAULT 1;
 --
 -- Contraintes pour la table `ligne_commande`
 --

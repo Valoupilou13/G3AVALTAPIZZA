@@ -148,7 +148,7 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 * **Spécifications API & JSON :** [Maquette JSON et messages d'erreur de l'API](./restoweb/documentation_technique.md)
 
 ### 2. Documents de réalisation
-* [Manuel d'installation et du jeu de test (PDF)](./doc/Documents de réalisation.pdf)
+* [Manuel d'installation et du jeu de test (PDF)](./doc/Documents%20de%20réalisation.pdf)
 
 ### 3. Documents d'exploitation
 * [Manuel d'utilisation : Inscription, Connexion, Commande, Paiement (PDF)](./doc/manuel_utilisation.pdf)

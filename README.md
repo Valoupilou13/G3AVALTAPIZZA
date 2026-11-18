@@ -17,7 +17,8 @@ En parallèle, le module intègre une **API REST** retournant des flux **JSON**,
 *(Comptes pré-enregistrés dans la table `utilisateur` de la base de données `G3AVALTAPIZZA`)*
 
 | ID | Login | Email | Mot de passe | Rôle / Remarques |
-| `9` | `adr` | `adm@gmail.com` | `1234` | Compte client de test 1 |
+| :---: | :--- | :--- | :--- | :--- |
+| `9` | `adr` | `adm@gmail.com` | '1234` | Compte client de test 1 |
 
 ---
 
@@ -38,7 +39,8 @@ AVALTAPIZZA/
 │   ├── Capture d'écran MLD.png
 │   └── RestowebMCD-MLD.loo
 ├── MPD/                                   # Modèle Physique des Données (SQL)
-│   └── G3AVALTAPIZZA.sql
+│   ├── G3AVALTAPIZZA.sql
+│   └── Le MPD (y compris _create database).pdf
 ├── Plan du site/                          # Sitemap (enchaînement des pages)
 │   └── sitemap avaltapizza (1).png
 ├── doc/                                   # Documents de réalisation et d'exploitation (PDF)
@@ -65,21 +67,22 @@ AVALTAPIZZA/
 │   ├── confirmation.php                   # Récapitulatif de commande confirmée
 │   └── documentation_technique.md         # Maquette JSON et messages d'erreur API
 └── README.md                              # Documentation générale du dépôt
+```
 
 ---
 
 ## 🚀 Liste des fonctionnalités (voir DCU)
 
-* **Gestion des utilisateurs :** Inscription d'un nouveau client (`inscription.php`), authentification sécurisée (`connexion.php`) et déconnexion (`deconnexion.php`).
-* **Consultation du catalogue :** Affichage dynamique des 11 produits de la carte (`produits.php`) avec visuels et tarifs.
-* **Gestion du panier et commande :** Sélection des produits, ajustement des quantités, choix du type de consommation (*Sur place* ou *À emporter*), validation du paiement (`paiement.php`) et confirmation (`confirmation.php`).
+* **Gestion des utilisateurs :** Inscription d'un nouveau client ([`inscription.php`](./restoweb/inscription.php)), authentification sécurisée ([`connexion.php`](./restoweb/connexion.php)) et déconnexion ([`deconnexion.php`](./restoweb/deconnexion.php)).
+* **Consultation du catalogue :** Affichage dynamique des 11 produits de la carte ([`produits.php`](./restoweb/produits.php)) avec visuels et tarifs.
+* **Gestion du panier et commande :** Sélection des produits, ajustement des quantités, choix du type de consommation (*Sur place* ou *À emporter*), validation du paiement ([`paiement.php`](./restoweb/paiement.php)) et confirmation ([`confirmation.php`](./restoweb/confirmation.php)).
 * **Suivi cuisine via l'API REST :** Consultation en temps réel des commandes en attente par *RestoSwing*, acceptation en cuisine, signalement de fin de préparation ou refus de commande.
 
 ---
 
 ## 🗄️ Liste et rôle des tables SQL
 
-La base de données **`G3AVALTAPIZZA`** contient **4 tables** :
+La base de données **`G3AVALTAPIZZA`** (voir [`create_database.sql`](./restoweb/bdd/create_database.sql)) contient **4 tables** :
 
 | Nom de la table | Colonnes | Rôle |
 | :--- | :--- | :--- |
@@ -92,14 +95,14 @@ La base de données **`G3AVALTAPIZZA`** contient **4 tables** :
 
 ## 📡 Liste des routes de l'API
 
-Toutes les routes se trouvent dans `restoweb/api/` et retournent une réponse au format `application/json`.
+Toutes les routes se trouvent dans [`restoweb/api/`](./restoweb/api/) et retournent une réponse au format `application/json`.
 
-| Méthode | Route (Endpoint) | Paramètres | Rôle |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/restoweb/api/commandes_en_attente.php` | Aucun | Retourne au format JSON la liste des commandes en attente de traitement (`id_etat = 1`). |
-| `GET` | `/restoweb/api/commande_accepter.php` | `id_commande` | Passe l'état de la commande à **En préparation** (`id_etat = 2`). |
-| `GET` | `/restoweb/api/commande_terminer.php` | `id_commande` | Passe l'état de la commande à **Prête** (`id_etat = 3`). |
-| `GET` | `/restoweb/api/commande_refuser.php` | `id_commande` | Passe l'état de la commande à **Abandonnée** (`id_etat = 4`). |
+| Méthode | Route (Endpoint) | Fichier source | Paramètres | Rôle |
+| :--- | :--- | :--- | :--- | :--- |
+| `GET` | `/restoweb/api/commandes_en_attente.php` | [`commandes_en_attente.php`](./restoweb/api/commandes_en_attente.php) | Aucun | Retourne au format JSON la liste des commandes en attente de traitement (`id_etat = 1`). |
+| `GET` | `/restoweb/api/commande_accepter.php` | [`commande_accepter.php`](./restoweb/api/commande_accepter.php) | `id_commande` | Passe l'état de la commande à **En préparation** (`id_etat = 2`). |
+| `GET` | `/restoweb/api/commande_terminer.php` | [`commande_terminer.php`](./restoweb/api/commande_terminer.php) | `id_commande` | Passe l'état de la commande à **Prête** (`id_etat = 3`). |
+| `GET` | `/restoweb/api/commande_refuser.php` | [`commande_refuser.php`](./restoweb/api/commande_refuser.php) | `id_commande` | Passe l'état de la commande à **Abandonnée** (`id_etat = 4`). |
 
 ---
 
@@ -137,24 +140,36 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 
 ---
 
-## 📚 Liens vers les documents du projet
+## 📚 Liens vers tous les documents du projet
 
-### Documents de conception
-* [Diagramme des cas d'utilisation (DCU)](./DCU-RestoWeb-Lot1/)
-* [Diagramme d'activités (DA)](./DA/DA%20avalTApizza.drawio.png)
-* [Modèle Conceptuel des Données (MCD)](./MCD/Capture%20d'écran%20MCD.png)
-* [Modèle Logique des Données (MLD)](./MLD/Capture%20d'écran%20MLD.png)
-* [Modèle Physique des Données (MPD - Script SQL)](./MPD/G3AVALTAPIZZA.sql)
-* [Sitemap (enchaînement des pages)](./Plan%20du%20site/sitemap%20avaltapizza%20(1).png)
-* [Maquettes de l'IHM](./IHM/IHM%20Avaltapizza.jpg)
-* [Maquette JSON et messages d'erreur de l'API](./restoweb/documentation_technique.md)
+### 1. Documents de conception
+* **Diagramme des cas d'utilisation (DCU) :**
+  * [Diagramme des Cas d'Utilisation (PDF/Image)](./DCU-RestoWeb-Lot1/Diagramme%20des%20Cas%20d%27Utilisation.pdf)
+  * [Fichier source LibreOffice Draw (`.odg`)](./DCU-RestoWeb-Lot1/DCU_RestoWeb_Lot1.odg)
+* **Diagramme d'activités (DA) :**
+  * [DA avalTApizza (PNG)](./DA/DA%20avalTApizza.drawio.png)
+* **Modèle Conceptuel des Données (MCD) :**
+  * [Capture d'écran MCD (PNG)](./MCD/Capture%20d%27écran%20MCD.png)
+* **Modèle Logique des Données (MLD) :**
+  * [Capture d'écran MLD (PNG)](./MLD/Capture%20d%27écran%20MLD.png)
+  * [Fichier source Looping (`.loo`)](./MLD/RestowebMCD-MLD.loo)
+* **Modèle Physique des Données (MPD) :**
+  * [Script SQL complet (`G3AVALTAPIZZA.sql`)](./MPD/G3AVALTAPIZZA.sql)
+  * [Script SQL de création et peuplement (`create_database.sql`)](./restoweb/bdd/create_database.sql)
+  * [Document MPD complet](./MPD/)
+* **Sitemap (enchaînement des pages) :**
+  * [Plan du site AVALTAPIZZA (PNG)](./Plan%20du%20site/sitemap%20avaltapizza%20%281%29.png)
+* **Maquettes de l'IHM :**
+  * [Maquette graphique IHM (JPG)](./IHM/IHM%20Avaltapizza.jpg)
+* **Spécifications API & JSON :**
+  * [Maquette JSON et messages d'erreur de l'API](./restoweb/documentation_technique.md)
 
-### Documents de réalisation
-* [Manuel d'installation](./doc/manuel_installation.pdf)
-* [Manuel du jeu de test](./doc/manuel_jeu_de_test.pdf)
+### 2. Documents de réalisation
+* [Manuel d'installation (PDF)](./doc/manuel_installation.pdf)
+* [Manuel du jeu de test (PDF)](./doc/manuel_jeu_de_test.pdf)
 
-### Documents d'exploitation
-* [Manuel d'utilisation (Inscription, Connexion, Commande, Paiement)](./doc/manuel_utilisation.pdf)
+### 3. Documents d'exploitation
+* [Manuel d'utilisation : Inscription, Connexion, Commande, Paiement (PDF)](./doc/manuel_utilisation.pdf)
 * [Documentation d'exploitation de l'API](./restoweb/documentation_technique.md)
 
 ---
@@ -165,7 +180,7 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 * **Valentin Maurin**
 * **Thelio Anouilh**
 * **Anthony Galeote**
-* **Louis Canitro-Fiol**
+* **Louis Canitrot-Fiol**
 
 ---
 

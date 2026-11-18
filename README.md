@@ -18,7 +18,7 @@ En parallèle, le module intègre une **API REST** retournant des flux **JSON**,
 
 | ID | Login | Email | Mot de passe | Rôle / Remarques |
 | :---: | :--- | :--- | :--- | :--- |
-| `9` | `adr` | `adm@gmail.com` | '1234` | Compte client de test 1 |
+| `9` | `adr` | `adm@gmail.com` | `1234` | Compte client de test 1 |
 
 ---
 
@@ -26,47 +26,39 @@ En parallèle, le module intègre une **API REST** retournant des flux **JSON**,
 
 ```text
 AVALTAPIZZA/
-├── DA/                                    # Diagramme d'activités
-│   └── DA avalTApizza.drawio.png
-├── DCU-RestoWeb-Lot1/                     # Diagramme des cas d'utilisation
-│   ├── DCU_RestoWeb_Lot1.odg
-│   └── Diagramme des Cas d'Utilisation.pdf
-├── IHM/                                   # Maquettes de l'interface graphique
-│   └── IHM Avaltapizza.jpg
-├── MCD/                                   # Modèle Conceptuel des Données
-│   └── Capture d'écran MCD.png
-├── MLD/                                   # Modèle Logique des Données
-│   ├── Capture d'écran MLD.png
-│   └── RestowebMCD-MLD.loo
-├── MPD/                                   # Modèle Physique des Données (SQL)
-│   ├── G3AVALTAPIZZA.sql
-│   └── Le MPD (y compris _create database).pdf
-├── Plan du site/                          # Sitemap (enchaînement des pages)
-│   └── sitemap avaltapizza (1).png
-├── doc/                                   # Documents de réalisation et d'exploitation (PDF)
-│   ├── manuel_installation.pdf
-│   ├── manuel_jeu_de_test.pdf
-│   └── manuel_utilisation.pdf
-├── restoweb/                              # Code source de l'application web et de l'API
-│   ├── api/                               # Endpoints de l'API REST (JSON)
-│   │   ├── commandes_en_attente.php       # Liste des commandes payées non traitées
-│   │   ├── commande_accepter.php          # Passage à l'état "En préparation"
-│   │   ├── commande_refuser.php           # Passage à l'état "Abandonnée"
-│   │   └── commande_terminer.php          # Passage à l'état "Prête"
-│   ├── bdd/                               # Scripts SQL de création et peuplement
-│   │   └── create_database.sql            # Tables, triggers et jeu de données
-│   ├── css/                               # Feuilles de style
+├── doc/                                           # Documentation de conception, réalisation et exploitation
+│   ├── MPD/                                       # Modèle Physique des Données
+│   │   ├── G3AVALTAPIZZA.sql                      # Script SQL complet de la base de données
+│   │   └── Le MPD (y compris _create database).pdf # Document explicatif du MPD
+│   ├── DA.png                                     # Diagramme d'activités
+│   ├── Diagramme des Cas d'Utilisation.pdf        # Diagramme des cas d'utilisation (DCU)
+│   ├── IHM.jpg                                    # Maquettes de l'interface graphique
+│   ├── MCD.png                                    # Modèle Conceptuel des Données
+│   ├── MLD.png                                    # Modèle Logique des Données
+│   ├── Sitemap.png                                # Plan du site (enchaînement des pages)
+│   ├── manuel_installation.pdf                    # Manuel d'installation (à ajouter)
+│   ├── manuel_jeu_de_test.pdf                     # Manuel du jeu de test (à ajouter)
+│   └── manuel_utilisation.pdf                     # Manuel d'utilisation client (à ajouter)
+├── restoweb/                                      # Code source de l'application web et de l'API
+│   ├── api/                                       # Endpoints de l'API REST (JSON)
+│   │   ├── commandes_en_attente.php               # Liste des commandes payées non traitées
+│   │   ├── commande_accepter.php                  # Passage à l'état "En préparation"
+│   │   ├── commande_refuser.php                   # Passage à l'état "Abandonnée"
+│   │   └── commande_terminer.php                  # Passage à l'état "Prête"
+│   ├── bdd/                                       # Scripts SQL de création et peuplement
+│   │   └── create_database.sql                    # Tables, triggers et jeu de données
+│   ├── css/                                       # Feuilles de style
 │   │   └── style.css
-│   ├── img/                               # Visuels des produits et logo
-│   ├── index.php                          # Page d'accueil
-│   ├── produits.php                       # Catalogue et ajout au panier
-│   ├── inscription.php                    # Création de compte client
-│   ├── connexion.php                      # Authentification client
-│   ├── deconnexion.php                    # Fermeture de session
-│   ├── paiement.php                   # Validation et paiement de la commande
-│   ├── confirmation.php                   # Récapitulatif de commande confirmée
-│   └── documentation_technique.md         # Maquette JSON et messages d'erreur API
-└── README.md                              # Documentation générale du dépôt
+│   ├── img/                                       # Visuels des produits et logo (14 fichiers)
+│   ├── index.php                                  # Page d'accueil
+│   ├── produits.php                               # Catalogue et ajout au panier
+│   ├── inscription.php                            # Création de compte client
+│   ├── connexion.php                              # Authentification client
+│   ├── deconnexion.php                            # Fermeture de session
+│   ├── paiement.php                               # Validation et paiement de la commande
+│   ├── confirmation.php                           # Récapitulatif de commande confirmée
+│   └── documentation_technique.md                 # Maquette JSON et messages d'erreur API
+└── README.md                                      # Documentation générale du dépôt
 ```
 
 ---
@@ -82,7 +74,7 @@ AVALTAPIZZA/
 
 ## 🗄️ Liste et rôle des tables SQL
 
-La base de données **`G3AVALTAPIZZA`** (voir [`create_database.sql`](./restoweb/bdd/create_database.sql)) contient **4 tables** :
+La base de données **`G3AVALTAPIZZA`** (voir [`create_database.sql`](./restoweb/bdd/create_database.sql) et [`G3AVALTAPIZZA.sql`](./doc/MPD/G3AVALTAPIZZA.sql)) contient **4 tables** :
 
 | Nom de la table | Colonnes | Rôle |
 | :--- | :--- | :--- |
@@ -143,26 +135,17 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 ## 📚 Liens vers tous les documents du projet
 
 ### 1. Documents de conception
-* **Diagramme des cas d'utilisation (DCU) :**
-  * [Diagramme des Cas d'Utilisation (PDF/Image)](./DCU-RestoWeb-Lot1/Diagramme%20des%20Cas%20d%27Utilisation.pdf)
-  * [Fichier source LibreOffice Draw (`.odg`)](./DCU-RestoWeb-Lot1/DCU_RestoWeb_Lot1.odg)
-* **Diagramme d'activités (DA) :**
-  * [DA avalTApizza (PNG)](./DA/DA%20avalTApizza.drawio.png)
-* **Modèle Conceptuel des Données (MCD) :**
-  * [Capture d'écran MCD (PNG)](./MCD/Capture%20d%27écran%20MCD.png)
-* **Modèle Logique des Données (MLD) :**
-  * [Capture d'écran MLD (PNG)](./MLD/Capture%20d%27écran%20MLD.png)
-  * [Fichier source Looping (`.loo`)](./MLD/RestowebMCD-MLD.loo)
+* **Diagramme des cas d'utilisation (DCU) :** [Diagramme des Cas d'Utilisation](./doc/Diagramme%20des%20Cas%20d%27Utilisation.pdf)
+* **Diagramme d'activités (DA) :** [DA.png](./doc/DA.png)
+* **Modèle Conceptuel des Données (MCD) :** [MCD.png](./doc/MCD.png)
+* **Modèle Logique des Données (MLD) :** [MLD.png](./doc/MLD.png)
 * **Modèle Physique des Données (MPD) :**
-  * [Script SQL complet (`G3AVALTAPIZZA.sql`)](./MPD/G3AVALTAPIZZA.sql)
+  * [Script SQL complet (`G3AVALTAPIZZA.sql`)](./doc/MPD/G3AVALTAPIZZA.sql)
   * [Script SQL de création et peuplement (`create_database.sql`)](./restoweb/bdd/create_database.sql)
-  * [Document MPD complet](./MPD/)
-* **Sitemap (enchaînement des pages) :**
-  * [Plan du site AVALTAPIZZA (PNG)](./Plan%20du%20site/sitemap%20avaltapizza%20%281%29.png)
-* **Maquettes de l'IHM :**
-  * [Maquette graphique IHM (JPG)](./IHM/IHM%20Avaltapizza.jpg)
-* **Spécifications API & JSON :**
-  * [Maquette JSON et messages d'erreur de l'API](./restoweb/documentation_technique.md)
+  * [Documentation MPD (`doc/MPD/`)](./doc/MPD/)
+* **Sitemap (enchaînement des pages) :** [Sitemap.png](./doc/Sitemap.png)
+* **Maquettes de l'IHM :** [IHM.jpg](./doc/IHM.jpg)
+* **Spécifications API & JSON :** [Maquette JSON et messages d'erreur de l'API](./restoweb/documentation_technique.md)
 
 ### 2. Documents de réalisation
 * [Manuel d'installation (PDF)](./doc/manuel_installation.pdf)
@@ -182,7 +165,6 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 * **Anthony Galeote**
 * **Louis Canitrot-Fiol**
 
----
 
 ## 🎓 Cadre académique
 

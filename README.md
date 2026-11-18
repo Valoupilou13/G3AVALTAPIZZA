@@ -151,8 +151,7 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 * [Manuel d'installation et du jeu de test (PDF)](./doc/Documents%20de%20réalisation.pdf)
 
 ### 3. Documents d'exploitation
-* [Manuel d'utilisation : Inscription, Connexion, Commande, Paiement (PDF)](./doc/manuel_utilisation.pdf)
-* [Documentation d'exploitation de l'API](./restoweb/documentation_technique.md)
+* [Manuel d'utilisation : Inscription, Connexion, Commande, Paiement (PDF)](./doc/Documents%20d'exploitation.pdf)
 
 ---
 

@@ -17,9 +17,7 @@ En parallèle, le module intègre une **API REST** retournant des flux **JSON**,
 *(Comptes pré-enregistrés dans la table `utilisateur` de la base de données `G3AVALTAPIZZA`)*
 
 | ID | Login | Email | Mot de passe | Rôle / Remarques |
-| :---: | :--- | :--- | :--- | :--- |
-| `1` | `val` | `valentin.maurin@limayrac.fr` | `[INSÉRER MOT DE PASSE DE VAL]` | Compte client de test 1 |
-| `8` | `valou` | `valou@gmail.com` | `[INSÉRER MOT DE PASSE DE VALOU]` | Compte client de test 2 (commandes de test associées) |
+| `9` | `adr` | `adm@gmail.com` | `1234` | Compte client de test 1 |
 
 ---
 

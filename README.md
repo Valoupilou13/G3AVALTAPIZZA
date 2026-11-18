@@ -161,11 +161,11 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 
 ## 👥 Contributeurs
 
-* **Adrien Mouly** (`@adrienmouly-cell`)
+* **Adrien Mouly** 
 * **Valentin Maurin**
-* **[Prénom Nom 3]**
-* **[Prénom Nom 4]**
-* **[Prénom Nom 5]**
+* **Thelio Anouilh**
+* **Anthony Galeote**
+* **Louis Canitro-Fiol**
 
 ---
 

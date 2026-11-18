@@ -1,95 +1,69 @@
-[README.md](https://github.com/user-attachments/files/35028592/README.md)
 # AVALTAPIZZA - RestoWeb 🍕
 
-Application web de commande en ligne pour la pizzeria AVALTAPIZZA, couplée à une API REST pour la gestion de la cuisine via l'application Java *RestoSwing*.
+Application web de commande en ligne pour la pizzeria **AVALTAPIZZA**, couplée à une API REST permettant le suivi et le traitement des commandes en cuisine via l'application Java *RestoSwing*.
 
 ---
 
-## 📌 Présentation du Projet
+## 📌 Description détaillée du projet
 
-**RestoWeb** est le module web du système d'information de la pizzeria AVALTAPIZZA. Il permet aux clients de :
-- Consulter le catalogue de produits (pizzas, boissons, desserts, menus).
-- Composer leur panier et passer commande.
-- Choisir le mode de consommation (*Sur place* ou *À emporter*).
+**RestoWeb** est le module web du système d'information de la pizzeria **AVALTAPIZZA** (développé en PHP 8, HTML5/CSS3 et MySQL/MariaDB). Il permet aux clients de consulter la carte en ligne (menus, pizzas, desserts, boissons), de créer un compte personnel, de composer un panier en choisissant le mode de consommation (*Sur place* ou *À emporter*) et de valider le paiement de leur commande.
 
-Le **Lot 5** du projet fournit une **API RESTful** en JSON permettant à l'application Java de la cuisine (*RestoSwing*) de lire et de mettre à jour l'état des commandes en temps réel.
+En parallèle, le module intègre une **API REST** retournant des flux **JSON**, exploitée par l'application lourde Java de la cuisine (*RestoSwing*) pour récupérer en temps réel les commandes payées en attente et mettre à jour leur état d'avancement (acceptation, préparation terminée ou refus).
 
 ---
 
-## 🚀 Fonctionnalités Principales
+## 🔐 Comptes prédéfinis (Jeu de test)
 
-- **Catalogue Interactif :** Affichage dynamique des produits et menus.
-- **Gestion des Modes de Consommation :** Application automatique du taux de TVA adapté (10% sur place, 5,5% à emporter).
-- **Calculs Métier Automatisés :** Calcul des totaux HT et TTC déporté dans des déclencheurs (*triggers*) MySQL.
-- **API REST Cuisine (Lot 5) :**
-  - Consultation des commandes en attente de préparation.
-  - Acceptation, refus ou finalisation des commandes par la cuisine.
+*(Comptes pré-enregistrés dans la table `utilisateur` de la base de données `G3AVALTAPIZZA`)*
+
+| ID | Login | Email | Mot de passe | Rôle / Remarques |
+| :---: | :--- | :--- | :--- | :--- |
+| `1` | `val` | `valentin.maurin@limayrac.fr` | `[INSÉRER MOT DE PASSE DE VAL]` | Compte client de test 1 |
+| `8` | `valou` | `valou@gmail.com` | `[INSÉRER MOT DE PASSE DE VALOU]` | Compte client de test 2 (commandes de test associées) |
 
 ---
 
-## 📁 Arborescence du Projet
+## 📁 Arborescence du projet
 
 ```text
-restoweb/
-├── api/                           # Endpoints de l'API REST (Lot 5)
-│   ├── commandes_en_attente.php   # Liste des commandes payées non servies
-│   ├── commande_accepter.php      # Passage à l'état "En préparation" (id_etat = 2)
-│   ├── commande_refuser.php       # Passage à l'état "Abandonnée" (id_etat = 4)
-│   └── commande_terminer.php      # Passage à l'état "Prête" (id_etat = 3)
-├── bdd/                           # Scripts SQL et Triggers
-│   └── createdatabase.sql         # Structure, Triggers et Jeux de données
-├── img/                           # Visuels des produits
-├── css/                           # Styles de l'interface web
-├── index.php                      # Page d'accueil
-├── produits.php                   # Carte des produits
-├── connexion.php                  # Authentification client
-├── inscription.php                # Inscription
-├── paiement.php                   # Validation de commande
-├── confirmation.php               # Confirmation
-├── DOCUMENTATION_TECHNIQUE.md     # Spécifications complètes de l'API REST
-└── README.md                      # Présentation du projet
-```
-
----
-
-## 🛠️ Installation et Configuration
-
-### Prérequis
-- Serveur Web (Apache ou Nginx) avec **PHP 7.4+** ou **PHP 8.x**
-- Base de données **MySQL** / **MariaDB**
-- Extension PHP `pdo_mysql` activée
-
-### Étapes d'installation
-
-1. **Cloner le dépôt :**
-   ```bash
-   git clone https://github.com/votre-org/G3AVALTAPIZZA.git
-   ```
-
-2. **Base de Données :**
-   - Importer `bdd/createdatabase.sql` dans MySQL (phpMyAdmin).
-   - Le script crée les tables (`commande`, `ligne_commande`, `produit`, `utilisateur`), la colonne `id_etat` et les triggers de calcul de TVA.
-
-3. **Configuration PDO :**
-   - Vérifier les identifiants de connexion MySQL dans vos scripts PHP (`localhost`, base `G3AVALTAPIZZA`, utilisateur `root`).
-
-4. **Accès :**
-   - Interface Web : `http://localhost/restoweb/`
-   - Endpoint API : `http://localhost/restoweb/api/commandes_en_attente.php`
-
----
-
-## 📡 Synthèse des Endpoints API (Lot 5)
-
-| Endpoint | Méthode | Action | État cible (`id_etat`) |
-| :--- | :---: | :--- | :---: |
-| `/api/commandes_en_attente.php` | `GET` | Liste des commandes à traiter | `1` (En attente) |
-| `/api/commande_accepter.php?id_commande=X` | `GET` | Accepter la commande X | `2` (En préparation) |
-| `/api/commande_terminer.php?id_commande=X` | `GET` | Marquer la commande X comme prête | `3` (Prête) |
-| `/api/commande_refuser.php?id_commande=X` | `GET` | Refuser la commande X | `4` (Abandonnée) |
-
----
-
-## 🎓 Cadre Académique
-
-Projet réalisé dans le cadre du cursus BTS SIO / Développement Web à l'**Institut Limayrac**.
+AVALTAPIZZA/
+├── DA/                                    # Diagramme d'activités
+│   └── DA avalTApizza.drawio.png
+├── DCU-RestoWeb-Lot1/                     # Diagramme des cas d'utilisation
+│   ├── DCU_RestoWeb_Lot1.odg
+│   └── Diagramme des Cas d'Utilisation.pdf
+├── IHM/                                   # Maquettes de l'interface graphique
+│   └── IHM Avaltapizza.jpg
+├── MCD/                                   # Modèle Conceptuel des Données
+│   └── Capture d'écran MCD.png
+├── MLD/                                   # Modèle Logique des Données
+│   ├── Capture d'écran MLD.png
+│   └── RestowebMCD-MLD.loo
+├── MPD/                                   # Modèle Physique des Données (SQL)
+│   └── G3AVALTAPIZZA.sql
+├── Plan du site/                          # Sitemap (enchaînement des pages)
+│   └── sitemap avaltapizza (1).png
+├── doc/                                   # Documents de réalisation et d'exploitation (PDF)
+│   ├── manuel_installation.pdf
+│   ├── manuel_jeu_de_test.pdf
+│   └── manuel_utilisation.pdf
+├── restoweb/                              # Code source de l'application web et de l'API
+│   ├── api/                               # Endpoints de l'API REST (JSON)
+│   │   ├── commandes_en_attente.php       # Liste des commandes payées non traitées
+│   │   ├── commande_accepter.php          # Passage à l'état "En préparation"
+│   │   ├── commande_refuser.php           # Passage à l'état "Abandonnée"
+│   │   └── commande_terminer.php          # Passage à l'état "Prête"
+│   ├── bdd/                               # Scripts SQL de création et peuplement
+│   │   └── create_database.sql            # Tables, triggers et jeu de données
+│   ├── css/                               # Feuilles de style
+│   │   └── style.css
+│   ├── img/                               # Visuels des produits et logo
+│   ├── index.php                          # Page d'accueil
+│   ├── produits.php                       # Catalogue et ajout au panier
+│   ├── inscription.php                    # Création de compte client
+│   ├── connexion.php                      # Authentification client
+│   ├── deconnexion.php                    # Fermeture de session
+│   ├── paiement.php                   # Validation et paiement de la commande
+│   ├── confirmation.php                   # Récapitulatif de commande confirmée
+│   └── documentation_technique.md         # Maquette JSON et messages d'erreur API
+└── README.md                              # Documentation générale du dépôt

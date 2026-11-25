@@ -135,7 +135,7 @@ Quatre déclencheurs (*triggers*) sont implémentés sur la table **`ligne_comma
 ## 📚 Liens vers tous les documents du projet
 
 ### 1. Documents de conception
-* **Diagramme des cas d'utilisation (DCU) :** [Diagramme des Cas d'Utilisation](./doc/Diagramme%20des%20Cas%20d%27Utilisation.pdf)
+* **Diagramme des cas d'utilisation (DCU) :** [Diagramme des Cas d'Utilisation](./doc/Diagramme%20des%20Cas%20d%27Utilisation.png)
 * **Diagramme d'activités (DA) :** [DA.png](./doc/DA.png)
 * **Modèle Conceptuel des Données (MCD) :** [MCD.png](./doc/MCD.png)
 * **Modèle Logique des Données (MLD) :** [MLD.png](./doc/MLD.png)
